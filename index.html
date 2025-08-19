@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自然大叔清洗服務｜顧客滿意度調查</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background-color: #f9faf9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+    h2 {
+      text-align: center;
+      color: #3a6d4f;
+      margin: 10px 0;
+      font-size: 1.3rem;
+    }
+    p {
+      line-height: 1.6;
+      color: #555;
+      font-size: 1rem;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      color: #3a6d4f;
+      font-size: 1.1rem;
+    }
+    .options label {
+      display: block;
+      margin: 5px 0;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 80px;
+      margin-top: 8px;
+    }
+    input[type=range] {
+      width: 100%;
+    }
+    button {
+      background: #3a6d4f;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+    button:hover {
+      background: #2d523c;
+    }
+    .contact {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f1f9f1;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .thankyou {
+      display: none;
+      text-align: center;
+      color: green;
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+    .thankyou .links {
+      margin-top: 15px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+    .btn-line {
+      background-color: #06c755;
+    }
+    .btn-fb {
+      background-color: #1877F2;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    .note {
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 4px;
+    }
+    .progress-container {
+      background: #e0e0e0;
+      border-radius: 20px;
+      margin: 20px 0;
+      height: 20px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #3a6d4f;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+        margin: 10px;
+      }
+      label {
+        font-size: 1rem;
+      }
+      textarea {
+        font-size: 0.95rem;
+        padding: 8px;
+      }
+      button {
+        font-size: 1.1rem;
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- LOGO 區塊 -->
+    <div class="logo">
+      <img src="ChatGPT.png" alt="自然大叔清洗服務 顧客滿意度調查">
+    </div>
+
+    <h2>誠摯邀請您填寫滿意度調查</h2>
+    <p>
+      感謝您選擇 <b>自然大叔專業家電清洗服務</b>！<br>
+      我們始終秉持「讓每一位顧客乾淨使用家電」的初衷，致力提供安全、安心、放心的清洗體驗。<br>
+      為了持續提升服務品質，也誠摯邀請您填寫以下調查表，<br>
+      您的寶貴意見，將是我們進步的最大動力！
+    </p>
+
+    <!-- 可視化進度條 -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <form id="surveyForm" action="https://formspree.io/f/xxxxxx" method="POST">
+      <!-- 問題 1 -->
+      <div class="form-group">
+        <label>1. 您對這次的清洗服務整體體驗感覺如何？</label>
+        <div class="options">
+          <label><input type="radio" name="q1" value="非常滿意"> 非常滿意</label>
+          <label><input type="radio" name="q1" value="滿意"> 滿意</label>
+          <label><input type="radio" name="q1" value="普通"> 普通</label>
+          <label><input type="radio" name="q1" value="不太滿意"> 不太滿意</label>
+          <label><input type="radio" name="q1" value="非常不滿意"> 非常不滿意</label>
+        </div>
+      </div>
+
+      <!-- 問題 2 -->
+      <div class="form-group">
+        <label>2. 您對服務人員的專業程度是否滿意？</label>
+        <div class="options">
+          <label><input type="radio" name="q2" value="非常滿意"> 非常滿意</label>
+          <label><input type="radio" name="q2" value="滿意"> 滿意</label>
+          <label><input type="radio" name="q2" value="普通"> 普通</label>
+          <label><input type="radio" name="q2" value="不太滿意"> 不太滿意</label>
+          <label><input type="radio" name="q2" value="非常不滿意"> 非常不滿意</label>
+        </div>
+        <textarea name="q2_extra" placeholder="若有特別印象或建議，請填寫..."></textarea>
+      </div>
+
+      <!-- 問題 3 -->
+      <div class="form-group">
+        <label>3. 您認為服務人員的整體表現如何？</label>
+        <div class="note">（1分=非常不滿意，5分=非常滿意）</div>
+        <div class="options">
+          <label><input type="radio" name="q3" value="1"> 1 分</label>
+          <label><input type="radio" name="q3" value="2"> 2 分</label>
+          <label><input type="radio" name="q3" value="3"> 3 分</label>
+          <label><input type="radio" name="q3" value="4"> 4 分</label>
+          <label><input type="radio" name="q3" value="5"> 5 分</label>
+        </div>
+      </div>
+
+      <!-- 問題 4 -->
+      <div class="form-group">
+        <label>4. 若朋友或同事有需要，您願意推薦自然大叔的清洗服務嗎？</label>
+        <div class="note">（1分=完全不會推薦，10分=一定會推薦）</div>
+        <input type="range" name="q4" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+        <output>5</output>
+      </div>
+
+      <!-- 問題 5 -->
+      <div class="form-group">
+        <label>5. 未來是否會再次委託自然大叔進行家電清洗服務？</label>
+        <div class="options">
+          <label><input type="radio" name="q5" value="一定會"> 一定會</label>
+          <label><input type="radio" name="q5" value="有需要會考慮"> 有需要會考慮</label>
+          <label><input type="radio" name="q5" value="可能不會"> 可能不會</label>
+          <label><input type="radio" name="q5" value="不會"> 不會</label>
+        </div>
+      </div>
+
+      <!-- 問題 6 -->
+      <div class="form-group">
+        <label>6. 您對我們的服務有任何想法、鼓勵或建議嗎？</label>
+        <div class="note">📝 「任何想法、批評或鼓勵的話，我們都非常歡迎您分享！」</div>
+        <textarea name="q6"></textarea>
+      </div>
+
+      <button type="submit">送出表單</button>
+      <div class="thankyou">
+        ✅ 感謝您填寫調查表！您的意見已成功送出。</div>
+	</form>
+    <!-- 聯絡資訊 -->
+    <div class="contact">
+	<center>
+      <h3>📱 聯絡我們｜快速找到自然大叔</h3>
+      <p>
+	</center>
+	<div style="text-align:center; margin-top:20px;">
+            <a href="https://lin.ee/OHk6Rn7" class="btn btn-line">📱 LINE 官方帳號</a>
+            <a href="tel:0912356331" class="btn btn-call" button style="background-color: DodgerBlue;">📞 立即來電</button></a>
+        </div>
+    </main>
+
+ </div>
+  </div>
+    </form>
+
+    <div class="footer">© 2025 自然大叔｜專業家電清洗服務</div>
+  </div>
+
+  <script>
+    const form = document.getElementById("surveyForm");
+    const thankyou = document.querySelector(".thankyou");
+    const progressBar = document.getElementById("progressBar");
+    const totalQuestions = 6;
+
+    // 更新進度條
+    const updateProgress = () => {
+      let answered = 0;
+
+      // 計算 radio 題
+      const radios = form.querySelectorAll('input[type=radio]');
+      const radioGroups = [...new Set([...radios].map(r => r.name))];
+      radioGroups.forEach(group => {
+        if (form.querySelector(`input[name="${group}"]:checked`)) answered++;
+      });
+
+      // 計算 range 題 (q4)
+      if (form.querySelector('input[name="q4"]').value) answered++;
+
+      // 計算 textarea (q2_extra, q6 至少有一個填寫才算)
+      if (form.querySelector('textarea[name="q6"]').value.trim() !== "" ||
+          form.querySelector('textarea[name="q2_extra"]').value.trim() !== "") {
+        answered++;
+      }
+
+      const percent = (answered / totalQuestions) * 100;
+      progressBar.style.width = percent + "%";
+    };
+
+    form.addEventListener("change", updateProgress);
+    form.addEventListener("input", updateProgress);
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          thankyou.style.display = "block";
+          progressBar.style.width = "0%";
+        } else {
+          alert("送出失敗，請稍後再試！");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
