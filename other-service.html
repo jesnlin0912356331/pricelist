@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【其他清洗服務】｜自然大叔</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --primary: #0077cc;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --text: #f5f5f5;
+        --primary: #4da3ff;
+      }
+    }
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: var(--primary);
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .nav-buttons a {
+      padding: 10px 18px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .nav-buttons a:hover {
+      opacity: 0.85;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      padding: 8px 14px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .service-box {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.02);
+    }
+    .service-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>【其他清洗服務】</h2>
+    <p>若您同時有預約以下服務，我們將提供額外優惠：</p>
+    <ul>
+      <li>✅ 直立式洗衣機清洗 ➜ 若同時清洗冷氣，可再折扣 $200 元</li>
+      <li>✅ 家用水塔清洗（兩噸內） ➜ 若同時清洗自來水管，可再折扣 $200 元</li>
+    </ul>
+    <p>📌 若無需求，可略過此項不選擇，謝謝您！</p>
+
+    <div class="service-box">
+      <h3>✅ 直立式洗衣機清洗</h3>
+      <p>☑️ 拆解零件、細部高壓手工清洗</p>
+      <label><input type="radio" name="washer" value="1台"> 1 台</label>
+      <label><input type="radio" name="washer" value="2台"> 2 台</label>
+      <label><input type="radio" name="washer" value="3台"> 3 台</label>
+      <label><input type="radio" name="washer" value="4台"> 4 台</label>
+
+      <p><strong>直立式洗衣機位於樓層為</strong></p>
+      <label><input type="radio" name="washer-floor" value="1F"> 1F</label>
+      <label><input type="radio" name="washer-floor" value="2F"> 2F</label>
+      <label><input type="radio" name="washer-floor" value="3F"> 3F</label>
+      <label><input type="radio" name="washer-floor" value="4F"> 4F</label>
+      <label><input type="radio" name="washer-floor" value="5F"> 5F</label>
+      <label><input type="radio" name="washer-floor" value="大樓"> 大樓（同一樓層）</label>
+    </div>
+
+    <div class="service-box">
+      <h3>✅ 家用水塔清洗（兩噸內）</h3>
+      <p>☑️ 手工長刷搭配清洗，不使用任何藥劑</p>
+      <label><input type="radio" name="watertank" value="1顆"> 1 顆</label>
+      <label><input type="radio" name="watertank" value="2顆"> 2 顆</label>
+      <label><input type="radio" name="watertank" value="3顆"> 3 顆</label>
+      <label><input type="radio" name="watertank" value="4顆"> 4 顆</label>
+      <label><input type="radio" name="watertank" value="5顆"> 5 顆</label>
+    </div>
+
+    <div class="service-box">
+      <h3>🚿 自來水管清洗服務</h3>
+      <p>我們採用食品級天然檸檬酸＋精密高週波設備，進行低壓高流速循環清洗，有效清除水管內部的生物膜、沉積物與雜質，提升用水品質。</p>
+      <h4>收費標準：</h4>
+      <label><input type="radio" name="pipe" value="無廚一衛"> 🚿 無廚一衛：$3200</label>
+      <label><input type="radio" name="pipe" value="一廚一衛"> 🍽️🚽 一廚一衛：$4200</label>
+      <label><input type="radio" name="pipe" value="一廚兩衛"> 🍽️🚽🚽 一廚兩衛：$5200</label>
+      <label><input type="radio" name="pipe" value="一廚三衛"> 🍽️🚽🚽🚽 一廚三衛：$6200</label>
+      <label><input type="radio" name="pipe" value="一廚四衛"> 🍽️🚽🚽🚽🚽 一廚四衛：$6700</label>
+      <label><input type="radio" name="pipe" value="一廚五衛"> 🍽️🚽🚽🚽🚽🚽 一廚五衛：$7200</label>
+    </div>
+
+    <div class="service-box">
+      <h3>請問您這次想清洗自來水管的原因是什麼呢？（可複選）</h3>
+      <label><input type="checkbox" name="reason" value="異味"> 出水有異味（如鐵鏽味、霉味等）</label>
+      <label><input type="checkbox" name="reason" value="混濁"> 水質混濁或有顆粒、沉澱物</label>
+      <label><input type="checkbox" name="reason" value="水壓變小"> 水壓變小或出水量減少</label>
+      <label><input type="checkbox" name="reason" value="長時間未清洗"> 長時間未清洗過水管（5 年以上）</label>
+      <label><input type="checkbox" name="reason" value="新屋"> 剛搬新家或新裝修</label>
+      <label><input type="checkbox" name="reason" value="健康考量"> 家中成員皮膚過敏或健康考量</label>
+      <label><input type="checkbox" name="reason" value="預防性保養"> 預防性保養清洗</label>
+      <label><input type="checkbox" name="reason" value="其他"> 其他原因（請說明）</label>
+      <textarea placeholder="請輸入其他原因..."></textarea>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="addon-service.html">← 返回上一步</a>
+      <a href="contact.html">下一步 ➜ 【聯繫名稱說明】</a>
+    </div>
+  </div>
+
+  <button class="theme-toggle" onclick="toggleTheme()">切換模式</button>
+
+  <script>
+    function toggleTheme() {
+      if(document.body.classList.contains('dark')){
+        document.body.classList.remove('dark');
+        document.documentElement.style.setProperty('--bg', '#ffffff');
+        document.documentElement.style.setProperty('--text', '#000000');
+      } else {
+        document.body.classList.add('dark');
+        document.documentElement.style.setProperty('--bg', '#121212');
+        document.documentElement.style.setProperty('--text', '#f5f5f5');
+      }
+    }
+  </script>
+</body>
+</html>
