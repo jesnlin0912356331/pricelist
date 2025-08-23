@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防霉・消毒【加購服務專區】｜自然大叔</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --primary: #0077cc;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --text: #f5f5f5;
+        --primary: #4da3ff;
+      }
+    }
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: var(--primary);
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .nav-buttons a {
+      padding: 10px 18px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .nav-buttons a:hover {
+      opacity: 0.85;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      padding: 8px 14px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .service-box {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.02);
+    }
+    .service-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>防霉・消毒【加購服務專區】</h2>
+    <p>為提升清洗效果與環境品質，我們提供以下兩項可選擇加購服務：</p>
+
+    <div class="service-box">
+      <h3>🟢 冷氣防霉抗菌處理</h3>
+      <p><strong>💰 每台 300 元｜5台以上優惠 每台 250 元</strong></p>
+      <ul>
+        <li>奈米級抗菌技術</li>
+        <li>日本納豆菌淨化專利</li>
+        <li>無香料、無化學添加，純水性原料</li>
+      </ul>
+      <p>噴塗於冷氣鰭片、風鼓、風道，形成抗菌保護膜，延緩黴菌與灰塵附著，提升空氣品質！</p>
+      <label><input type="radio" name="antibacterial" value="需要"> 需要</label>
+      <label><input type="radio" name="antibacterial" value="不需要"> 不需要</label>
+    </div>
+
+    <div class="service-box">
+      <h3>🟢 臭氧空間全面消毒（房間用）</h3>
+      <p><strong>💰 每間房間 200 元</strong></p>
+      <ul>
+        <li>消除黴菌、塵蟎、真菌</li>
+        <li>去除香菸、雪茄異味</li>
+        <li>減少寵物異味與揮發性污染物</li>
+        <li>分解地毯、家具、油漆等釋放的污染源</li>
+      </ul>
+      <p>臭氧殺菌力為氯的 3000 倍，能有效破壞病菌 DNA 與蛋白質結構，達到深層消毒！</p>
+      <label><input type="radio" name="ozone" value="需要"> 需要</label>
+      <label><input type="radio" name="ozone" value="不需要"> 不需要</label>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="ac-booking.html">← 返回上一步</a>
+      <a href="other-service.html">下一步 ➜ 【其他清洗服務】</a>
+    </div>
+  </div>
+
+  <button class="theme-toggle" onclick="toggleTheme()">切換模式</button>
+
+  <script>
+    function toggleTheme() {
+      if(document.body.classList.contains('dark')){
+        document.body.classList.remove('dark');
+        document.documentElement.style.setProperty('--bg', '#ffffff');
+        document.documentElement.style.setProperty('--text', '#000000');
+      } else {
+        document.body.classList.add('dark');
+        document.documentElement.style.setProperty('--bg', '#121212');
+        document.documentElement.style.setProperty('--text', '#f5f5f5');
+      }
+    }
+  </script>
+</body>
+</html>
