@@ -17,15 +17,39 @@
     :root {
       --bg: #ffffff;
       --text: #000000;
-      --primary: #0077cc;
+      --primary: #2563eb; /* ✅ 改新版標題藍 */
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #121212;
         --text: #f5f5f5;
-        --primary: #4da3ff;
+        --primary: #2563eb; /* ✅ 深色模式同樣新版藍 */
       }
     }
+
+    /* ✅ 頂部標題區塊，統一 bulk-booking 風格 */
+    .page-header {
+      background: #f3f4f6; /* 灰底 */
+      border-bottom: 1px solid #d1d5db;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .page-header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    @media (prefers-color-scheme: dark) {
+      .page-header {
+        background: #1f2937;
+        border-bottom: 1px solid #374151;
+      }
+      .page-header h1 {
+        color: #3b82f6;
+      }
+    }
+
     .container {
       padding: 20px;
       max-width: 900px;
@@ -55,17 +79,6 @@
     .nav-buttons a:hover {
       opacity: 0.85;
     }
-    .theme-toggle {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      padding: 8px 14px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
     .service-box {
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -78,17 +91,24 @@
       color: var(--primary);
     }
     textarea {
-      width: 100%;
+      width: calc(100% - 20px);
       min-height: 100px;
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 6px;
       resize: vertical;
       font-size: 1rem;
+      margin: 10px;
+      display: none; /* ✅ 預設隱藏 */
     }
   </style>
 </head>
 <body>
+  <!-- ✅ 頂部標題區塊 -->
+  <div class="page-header">
+    <h1>其他清洗｜自然大叔</h1>
+  </div>
+
   <div class="container">
     <h2>【其他清洗服務】</h2>
     <p>若您同時有預約以下服務，我們將提供額外優惠：</p>
@@ -146,30 +166,28 @@
       <label><input type="checkbox" name="reason" value="新屋"> 剛搬新家或新裝修</label>
       <label><input type="checkbox" name="reason" value="健康考量"> 家中成員皮膚過敏或健康考量</label>
       <label><input type="checkbox" name="reason" value="預防性保養"> 預防性保養清洗</label>
-      <label><input type="checkbox" name="reason" value="其他"> 其他原因（請說明）</label>
-      <textarea placeholder="請輸入其他原因..."></textarea>
+      <label>
+        <input type="checkbox" id="reason-other" name="reason" value="其他">
+        其他原因（請說明）
+      </label>
+      <textarea id="other-reason" placeholder="請輸入其他原因..."></textarea>
     </div>
 
     <div class="nav-buttons">
-      <a href="addon-service.html">← 返回上一步</a>
+      <a href="index.html">回首頁</a>
       <a href="contact.html">下一步 ➜ 【聯繫名稱說明】</a>
     </div>
   </div>
 
-  <button class="theme-toggle" onclick="toggleTheme()">切換模式</button>
-
   <script>
-    function toggleTheme() {
-      if(document.body.classList.contains('dark')){
-        document.body.classList.remove('dark');
-        document.documentElement.style.setProperty('--bg', '#ffffff');
-        document.documentElement.style.setProperty('--text', '#000000');
-      } else {
-        document.body.classList.add('dark');
-        document.documentElement.style.setProperty('--bg', '#121212');
-        document.documentElement.style.setProperty('--text', '#f5f5f5');
-      }
-    }
+    // ✅ 勾選其他才顯示輸入框
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkbox = document.getElementById("reason-other");
+      const textarea = document.getElementById("other-reason");
+      checkbox.addEventListener("change", () => {
+        textarea.style.display = checkbox.checked ? "block" : "none";
+      });
+    });
   </script>
 </body>
 </html>
