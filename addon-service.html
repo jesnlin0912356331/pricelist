@@ -17,13 +17,13 @@
     :root {
       --bg: #ffffff;
       --text: #000000;
-      --primary: #0077cc;
+      --primary: #2563eb; /* ✅ 改新版標題藍 */
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #121212;
         --text: #f5f5f5;
-        --primary: #4da3ff;
+        --primary: #2563eb; /* ✅ 深色模式新版標題藍 */
       }
     }
     .container {
@@ -54,17 +54,6 @@
     }
     .nav-buttons a:hover {
       opacity: 0.85;
-    }
-    .theme-toggle {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      padding: 8px 14px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
     }
     .service-box {
       border: 1px solid #ccc;
@@ -116,21 +105,5 @@
       <a href="other-service.html">下一步 ➜ 【其他清洗服務】</a>
     </div>
   </div>
-
-  <button class="theme-toggle" onclick="toggleTheme()">切換模式</button>
-
-  <script>
-    function toggleTheme() {
-      if(document.body.classList.contains('dark')){
-        document.body.classList.remove('dark');
-        document.documentElement.style.setProperty('--bg', '#ffffff');
-        document.documentElement.style.setProperty('--text', '#000000');
-      } else {
-        document.body.classList.add('dark');
-        document.documentElement.style.setProperty('--bg', '#121212');
-        document.documentElement.style.setProperty('--text', '#f5f5f5');
-      }
-    }
-  </script>
 </body>
 </html>
