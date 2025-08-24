@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯繫名稱說明</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5; /* 淺灰背景 */
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.8em;
+      color: #007bff; /* 藍色標題色碼 */
+      margin-bottom: 15px;
+      text-align: left; /* 靠左 */
+    }
+    .intro {
+      margin-bottom: 20px;
+    }
+    .intro p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    .card {
+      background: #fff; /* 白色卡片 */
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      color: #007bff;
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+    }
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      resize: vertical;
+      min-height: 100px;
+    }
+    .image-wrapper {
+      margin: 15px 0;
+      text-align: center;
+    }
+    .image-wrapper img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+    .button-container {
+      text-align: center; /* 置中顯示 */
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1em;
+      margin: 5px;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* 深色模式 */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #222;
+        color: #fff;
+      }
+      h1 {
+        color: #66b3ff;
+      }
+      .card {
+        background: #333;
+        border: 1px solid #555;
+      }
+      .card h2 {
+        color: #66b3ff;
+      }
+      textarea {
+        background: #444;
+        color: #fff;
+        border: 1px solid #666;
+      }
+      .image-wrapper img {
+        border: 1px solid #666;
+      }
+    }
+
+    /* RWD */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5em;
+      }
+      .btn {
+        font-size: 0.9em;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>聯繫名稱說明</h1>
+
+    <!-- 開頭說明文字 -->
+    <div class="intro">
+      <p>為了加快預約與資料比對速度，煩請您提供下列聯繫名稱：</p>
+      <p>✅ 使用 LINE 聯繫者：請填寫您的 LINE 顯示名稱（非ID）</p>
+      <p>✅ 使用 Facebook 粉絲專頁或私訊聯繫者：請填寫您或粉專的 Facebook 名稱</p>
+      <p>📌 若未提供名稱，可能導致我們無法順利對應您的預約紀錄。敬請協助填寫，感謝您的配合與支持！</p>
+    </div>
+
+    <!-- 聯繫方式選項 -->
+    <div class="card">
+      <h2>📞 與我們聯繫方式 (必勾選選項)</h2>
+      <label><input type="checkbox" name="contact-method">透過 Facebook 粉絲團與我們聯繫</label>
+      <label><input type="checkbox" name="contact-method">透過 LINE 與我們聯繫</label>
+      <label><input type="checkbox" name="contact-method">直接線上預約資料</label>
+      <label><input type="checkbox" name="contact-method">其他方式</label>
+    </div>
+
+    <!-- 名稱輸入框 -->
+    <div class="card">
+      <h2>Line 名稱 or Facebook 名稱 (必須填寫)</h2>
+      <!-- 圖片展示區塊 -->
+      <div class="image-wrapper">
+        <img src="imagesexample.jpg" alt="名稱填寫示範圖">
+      </div>
+      <textarea placeholder="請輸入您的 LINE 顯示名稱或 Facebook 名稱"></textarea>
+    </div>
+
+    <!-- 導向按鈕 -->
+    <div class="button-container">
+      <a href="final-booking.html" class="btn">下一步 ➜ 【預約資料填寫】</a>
+    </div>
+  </div>
+</body>
+</html>
