@@ -73,6 +73,7 @@
       border: 1px solid var(--card-border);
       border-radius: 12px;
       transition: background 0.3s, border 0.3s;
+      position: relative; /* 讓按鈕定位於此區塊 */
     }
 
     h2, h3 {
@@ -131,10 +132,10 @@
 <body>
   <header>
     <img src="ChatGPT Image.jpg" alt="自然大叔 線上預約系統 Banner">
-    <button class="theme-toggle" onclick="toggleTheme()">切換主題</button>
   </header>
 
   <section>
+    <button class="theme-toggle" onclick="toggleTheme()">切換 深色／淺色</button>
     <h2>關於我們</h2>
     <p>我們堅持「讓每一位顧客都能乾淨地使用家電」，以專業細膩的清洗服務，守護您與家人的健康。我們了解家電清洗的每個細節對您來說都是重要的，因此從藥劑到清洗手法，我們都秉持著高標準，給您最安心的選擇。</p>
     <ul>
