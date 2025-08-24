@@ -8,32 +8,43 @@
     body {
       font-family: "Noto Sans TC", sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background: #ffffff;
       color: #374151;
       transition: background 0.3s, color 0.3s;
     }
-    h1 {
-      text-align: center;
-      color: #2563eb; /* 新版標題藍 */
-      margin-bottom: 20px;
+    /* ✅ 頂部標題區塊，統一 bulk-booking 風格 */
+    .page-header {
+      background: #f3f4f6; /* 灰底 */
+      border-bottom: 1px solid #d1d5db;
+      padding: 30px 20px; /* 高度與內距一致 */
+      text-align: center; /* ✅ 標題置中 */
     }
+    .page-header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2563eb; /* 新版藍色 */
+    }
+
     form {
       max-width: 800px;
-      margin: auto;
+      margin: 30px auto;
+      padding: 0 20px;
     }
     .section {
       border: 1px solid #d1d5db;
       border-radius: 8px;
       padding: 20px;
       margin-bottom: 20px;
-      background: #f9fafb; /* 淡灰底 */
+      background: #f9fafb;
     }
     .section h2 {
       margin-top: 0;
-      color: #2563eb; /* 新版標題藍 */
+      color: #2563eb;
       font-size: 1.1rem;
       margin-bottom: 12px;
+      text-align: left;
     }
     label {
       font-weight: bold;
@@ -43,6 +54,7 @@
     }
     .radio-group, .checkbox-group {
       margin: 10px 0;
+      padding-left: 10px;
     }
     .radio-group label, .checkbox-group label {
       display: flex;
@@ -60,6 +72,7 @@
     .note-img {
       margin: 10px 0;
       text-align: left;
+      padding-left: 10px;
     }
     .note-img img {
       width: 60%;
@@ -70,7 +83,8 @@
     .btn-group {
       display: flex;
       justify-content: space-between;
-      margin-top: 25px;
+      margin: 30px auto;
+      max-width: 800px;
     }
     .btn-group a, .btn-group button {
       flex: 1;
@@ -90,58 +104,32 @@
       background: #1e40af;
     }
 
-    /* 深色模式 */
+    .required {
+      color: red;
+      margin-left: 3px;
+    }
+
+    /* 深色模式自動跟隨 */
     @media (prefers-color-scheme: dark) {
-      body { background: #111827; color: #ffffff; }  /* 白色字體 */
+      body { background: #111827; color: #ffffff; }  
+      .page-header { background: #1f2937; border-bottom: 1px solid #374151; }
+      .page-header h1 { color: #3b82f6; }
       .section { border: 1px solid #374151; background: #1f2937; }
-      h1 { color: #3b82f6; } /* 深色亮藍 */
       .section h2 { color: #3b82f6; }
       label, .radio-group label, .checkbox-group label { color: #ffffff; }
-    }
-    .dark-mode {
-      background: #111827;
-      color: #ffffff;
-    }
-    .dark-mode .section {
-      border: 1px solid #374151;
-      background: #1f2937;
-      color: #ffffff;
-    }
-    .dark-mode h1, .dark-mode .section h2 {
-      color: #3b82f6; /* 深色亮藍 */
-    }
-    .dark-mode label, 
-    .dark-mode .radio-group label, 
-    .dark-mode .checkbox-group label {
-      color: #ffffff;
-    }
-    #themeToggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 14px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      z-index: 1000;
-      transition: background 0.2s;
-    }
-    #themeToggle:hover {
-      background: #1e40af;
     }
   </style>
 </head>
 <body>
-  <button id="themeToggle">切換主題</button>
-  <h1>冷氣清洗 預約表單</h1>
+  <!-- ✅ 頂部標題區塊 -->
+  <div class="page-header">
+    <h1>冷氣清洗 預約表單</h1>
+  </div>
 
   <form action="addon-service.html" method="get">
     <!-- 冷氣類型 -->
     <div class="section">
-      <h2>冷氣類型 *</h2>
+      <h2>冷氣類型 <span class="required">*</span></h2>
       <div class="radio-group">
         <label>
           <input type="radio" name="ac_type" value="分離式冷氣" required>
@@ -158,7 +146,7 @@
 
     <!-- 室內機樓層 -->
     <div class="section">
-      <h2>室內機所在樓層 *</h2>
+      <h2>室內機所在樓層 <span class="required">*</span></h2>
       <div class="radio-group">
         <label><input type="radio" name="floor" value="1樓" required> 1 樓</label>
         <label><input type="radio" name="floor" value="2樓"> 2 樓</label>
@@ -169,7 +157,7 @@
 
     <!-- 冷氣品牌 -->
     <div class="section">
-      <h2>冷氣品牌（可複選） *</h2>
+      <h2>冷氣品牌（可複選） <span class="required">*</span></h2>
       <div class="checkbox-group">
         <label><input type="checkbox" name="brand[]" value="HITACHI日立冷氣">HITACHI日立冷氣</label>
         <label><input type="checkbox" name="brand[]" value="Panasonic 國際牌">Panasonic 國際牌</label>
@@ -189,7 +177,7 @@
 
     <!-- 是否為變形金剛系列 -->
     <div class="section">
-      <h2>是否為「變形金剛系列」冷氣機型？ *</h2>
+      <h2>是否為「變形金剛系列」冷氣機型？ <span class="required">*</span></h2>
       <div class="note-img">
         <p>常見「變形金剛系列」機型參考：</p>
         <img src="imagestransformer-ac.jpg" alt="變形金剛系列冷氣範例">
@@ -207,21 +195,5 @@
       <button type="submit">下一步 ➜ 防霉・消毒【加購服務專區】</button>
     </div>
   </form>
-
-  <script>
-    // 深色模式切換
-    const toggleBtn = document.getElementById('themeToggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    });
-
-    // 載入使用者偏好
-    window.onload = () => {
-      if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
-    };
-  </script>
 </body>
 </html>
