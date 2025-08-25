@@ -130,5 +130,32 @@
       }
     })();
   </script>
+  <script>
+  // 頁面載入時自動檢查 localStorage 的模式
+  (function () {
+    const userTheme = localStorage.getItem("theme");
+    if (userTheme === "dark") {
+      document.body.classList.add("dark-mode");
+    } else if (userTheme === "light") {
+      document.body.classList.remove("dark-mode");
+    } else {
+      // 如果沒選過，就跟隨系統
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.classList.add("dark-mode");
+      }
+    }
+  })();
+
+  // 提供一個切換函式（首頁 index.html 的按鈕會用到）
+  function toggleTheme() {
+    if (document.body.classList.contains("dark-mode")) {
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.body.classList.add("dark-mode");
+      localStorage.setItem("theme", "dark");
+    }
+  }
+</script>
 </body>
 </html>
