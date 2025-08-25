@@ -128,7 +128,7 @@
       margin-left: 3px;
     }
 
-    /* 深色模式 */
+    /* ✅ 深色模式 (自動) */
     @media (prefers-color-scheme: dark) {
       body { background: #111827; color: #ffffff; }
       .page-header { background: #1f2937; border-bottom: 1px solid #374151; }
@@ -263,21 +263,6 @@
         });
       });
     });
-
-    // ✅ 跨頁同步深色/淺色模式
-    (function () {
-      const userTheme = localStorage.getItem("theme");
-      if (userTheme === "dark") {
-        document.body.classList.add("dark-mode");
-      } else if (userTheme === "light") {
-        document.body.classList.remove("dark-mode");
-      } else {
-        // 如果沒選過，就跟隨系統
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.body.classList.add("dark-mode");
-        }
-      }
-    })();
   </script>
 </body>
 </html>
