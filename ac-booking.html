@@ -13,6 +13,7 @@
       color: #374151;
       transition: background 0.3s, color 0.3s;
     }
+
     /* ✅ 頂部標題區塊，統一 bulk-booking 風格 */
     .page-header {
       background: #f3f4f6; /* 灰底 */
@@ -80,16 +81,17 @@
       border-radius: 6px;
       border: 1px solid #d1d5db;
     }
+
+    /* ✅ 按鈕區塊 */
     .btn-group {
       display: flex;
-      justify-content: space-between;
+      gap: 12px;
       margin: 30px auto;
       max-width: 800px;
     }
     .btn-group a, .btn-group button {
       flex: 1;
-      margin: 0 6px;
-      padding: 12px;
+      padding: 14px;
       background: #2563eb;
       color: #fff;
       text-align: center;
@@ -118,6 +120,22 @@
       .section h2 { color: #3b82f6; }
       label, .radio-group label, .checkbox-group label { color: #ffffff; }
     }
+
+    /* ✅ RWD：手機優化 */
+    @media (max-width: 600px) {
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+      .note-img img {
+        width: 100%;
+      }
+      .btn-group {
+        flex-direction: column;
+      }
+      .btn-group a, .btn-group button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -137,7 +155,7 @@
           <img src="imagessplit-ac.jpg" alt="分離式冷氣">
         </label>
         <label>
-          <input type="radio" name="ac_type" value="吊隱式冷氣" required>
+          <input type="radio" name="ac_type" value="吊隱式冷氣">
           吊隱式冷氣
           <img src="imagesceiling-ac.jpg" alt="吊隱式冷氣">
         </label>
@@ -159,7 +177,7 @@
     <div class="section">
       <h2>冷氣品牌（可複選） <span class="required">*</span></h2>
       <div class="checkbox-group">
-        <label><input type="checkbox" name="brand[]" value="HITACHI日立冷氣">HITACHI日立冷氣</label>
+        <label><input type="checkbox" name="brand[]" value="HITACHI日立冷氣" required>HITACHI日立冷氣</label>
         <label><input type="checkbox" name="brand[]" value="Panasonic 國際牌">Panasonic 國際牌</label>
         <label><input type="checkbox" name="brand[]" value="DAIKIN 大金冷氣">DAIKIN 大金冷氣</label>
         <label><input type="checkbox" name="brand[]" value="MITSUBISHI 三菱">MITSUBISHI 三菱</label>
@@ -189,7 +207,7 @@
       </div>
     </div>
 
-    <!-- 導向按鈕 -->
+    <!-- ✅ 導向按鈕 -->
     <div class="btn-group">
       <a href="index.html">← 返回首頁</a>
       <button type="submit">下一步 ➜ 防霉・消毒【加購服務專區】</button>
