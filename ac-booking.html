@@ -14,18 +14,30 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    /* ✅ 頂部標題區塊，統一 bulk-booking 風格 */
+    /* ✅ 頂部標題區塊 */
     .page-header {
-      background: #f3f4f6; /* 灰底 */
+      background: #f3f4f6;
       border-bottom: 1px solid #d1d5db;
       padding: 30px 20px;
       text-align: center;
+      position: relative;
     }
     .page-header h1 {
       margin: 0;
       font-size: 2rem;
       font-weight: bold;
       color: #2563eb;
+    }
+
+    /* 🌙 主題切換按鈕 */
+    .theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
 
     form {
@@ -70,6 +82,7 @@
       border-radius: 6px;
       border: 1px solid #d1d5db;
     }
+
     .note-img {
       margin: 10px 0;
       text-align: left;
@@ -82,7 +95,21 @@
       border: 1px solid #d1d5db;
     }
 
-    /* ✅ 按鈕區塊：始終並排 */
+    /* ✅ 輸入框 */
+    .hidden-input {
+      display: none;
+      margin-top: 10px;
+    }
+    .hidden-input input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    /* ✅ 按鈕區塊 */
     .btn-group {
       display: flex;
       justify-content: space-between;
@@ -102,7 +129,7 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background 0.2s;
-      white-space: nowrap; /* ✅ 避免換行 */
+      white-space: nowrap;
     }
     .btn-group a:hover, .btn-group button:hover {
       background: #1e40af;
@@ -114,16 +141,18 @@
     }
 
     /* 深色模式 */
-    @media (prefers-color-scheme: dark) {
-      body { background: #111827; color: #ffffff; }  
-      .page-header { background: #1f2937; border-bottom: 1px solid #374151; }
-      .page-header h1 { color: #3b82f6; }
-      .section { border: 1px solid #374151; background: #1f2937; }
-      .section h2 { color: #3b82f6; }
-      label, .radio-group label, .checkbox-group label { color: #ffffff; }
+    body.dark {
+      background: #111827;
+      color: #ffffff;
     }
+    body.dark .page-header { background: #1f2937; border-bottom: 1px solid #374151; }
+    body.dark .page-header h1 { color: #3b82f6; }
+    body.dark .section { border: 1px solid #374151; background: #1f2937; }
+    body.dark .section h2 { color: #3b82f6; }
+    body.dark label, body.dark .radio-group label, body.dark .checkbox-group label { color: #ffffff; }
+    body.dark .hidden-input input { background: #374151; color: #fff; border: 1px solid #555; }
 
-    /* ✅ 手機優化：按鈕縮小但仍橫排 */
+    /* ✅ 手機優化 */
     @media (max-width: 600px) {
       .page-header h1 { font-size: 1.5rem; }
       .note-img img { width: 100%; }
@@ -135,36 +164,10 @@
   </style>
 </head>
 <body>
-  <script>
-  // 頁面載入時自動檢查 localStorage 的模式
-  (function () {
-    const userTheme = localStorage.getItem("theme");
-    if (userTheme === "dark") {
-      document.body.classList.add("dark-mode");
-    } else if (userTheme === "light") {
-      document.body.classList.remove("dark-mode");
-    } else {
-      // 如果沒選過，就跟隨系統
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.body.classList.add("dark-mode");
-      }
-    }
-  })();
-
-  // 提供一個切換函式（首頁 index.html 的按鈕會用到）
-  function toggleTheme() {
-    if (document.body.classList.contains("dark-mode")) {
-      document.body.classList.remove("dark-mode");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.body.classList.add("dark-mode");
-      localStorage.setItem("theme", "dark");
-    }
-  }
-</script>
   <!-- 頂部標題 -->
   <div class="page-header">
     <h1>冷氣清洗 預約表單</h1>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
   </div>
 
   <form action="addon-service.html" method="get">
@@ -182,6 +185,26 @@
           吊隱式冷氣
           <img src="imagesceiling-ac.jpg" alt="吊隱式冷氣">
         </label>
+      </div>
+    </div>
+
+    <!-- ✅ 清洗數量 -->
+    <div class="section">
+      <h2>清洗數量 <span class="required">*</span></h2>
+      <div class="radio-group">
+        <label><input type="radio" name="quantity" value="1台" required> 1 台</label>
+        <label><input type="radio" name="quantity" value="2台"> 2 台</label>
+        <label><input type="radio" name="quantity" value="3台"> 3 台</label>
+        <label><input type="radio" name="quantity" value="4台"> 4 台</label>
+        <label><input type="radio" name="quantity" value="5台"> 5 台</label>
+        <label>
+          <input type="radio" id="more-option" name="quantity" value="5台以上">
+          5 台以上
+        </label>
+        <!-- 隱藏輸入框 -->
+        <div class="hidden-input" id="more-input">
+          <input type="number" name="quantity_more" min="6" placeholder="請輸入清洗數量（6 台以上）">
+        </div>
       </div>
     </div>
 
@@ -232,9 +255,55 @@
 
     <!-- 導向按鈕 -->
     <div class="btn-group">
-      <a href="index.html">← 返回首頁</a>
+      <a href="index.html">回首頁</a>
       <button type="submit">下一步 ➜ 防霉・消毒【加購服務專區】</button>
     </div>
   </form>
+
+  <script>
+    // ✅ 勾選「5台以上」時顯示輸入框
+    document.addEventListener("DOMContentLoaded", () => {
+      const moreOption = document.getElementById("more-option");
+      const moreInput = document.getElementById("more-input");
+      const radios = document.querySelectorAll("input[name='quantity']");
+
+      radios.forEach(radio => {
+        radio.addEventListener("change", () => {
+          moreInput.style.display = moreOption.checked ? "block" : "none";
+        });
+      });
+
+      // 🌙 主題模式切換
+      const body = document.body;
+      const toggleBtn = document.getElementById("themeToggle");
+
+      function setTheme(mode) {
+        if (mode === "dark") {
+          body.classList.add("dark");
+          toggleBtn.textContent = "🌞";
+        } else {
+          body.classList.remove("dark");
+          toggleBtn.textContent = "🌙";
+        }
+        localStorage.setItem("theme", mode);
+      }
+
+      // 初始化主題：localStorage > 系統偏好
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+
+      // 按鈕切換
+      toggleBtn.addEventListener("click", () => {
+        const current = body.classList.contains("dark") ? "dark" : "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      });
+    });
+  </script>
 </body>
 </html>
