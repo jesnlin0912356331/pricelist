@@ -90,6 +90,11 @@
       background-color: #0056b3;
     }
 
+    .required {
+      color: red;
+      margin-left: 4px;
+    }
+
     /* 深色模式 */
     @media (prefers-color-scheme: dark) {
       body {
@@ -140,29 +145,31 @@
       <p>📌 若未提供名稱，可能導致我們無法順利對應您的預約紀錄。敬請協助填寫，感謝您的配合與支持！</p>
     </div>
 
-    <!-- 聯繫方式選項 -->
-    <div class="card">
-      <h2>📞 與我們聯繫方式 (必勾選選項)</h2>
-      <label><input type="checkbox" name="contact-method">透過 Facebook 粉絲團與我們聯繫</label>
-      <label><input type="checkbox" name="contact-method">透過 LINE 與我們聯繫</label>
-      <label><input type="checkbox" name="contact-method">直接線上預約資料</label>
-      <label><input type="checkbox" name="contact-method">其他方式</label>
-    </div>
-
-    <!-- 名稱輸入框 -->
-    <div class="card">
-      <h2>Line 名稱 or Facebook 名稱 (必須填寫)</h2>
-      <!-- 圖片展示區塊 -->
-      <div class="image-wrapper">
-        <img src="imagesexample.jpg" alt="名稱填寫示範圖">
+    <form action="final-booking.html" method="get">
+      <!-- 聯繫方式選項 -->
+      <div class="card">
+        <h2>📞 與我們聯繫方式 <span class="required">*</span></h2>
+        <label><input type="checkbox" name="contact-method" required>透過 Facebook 粉絲團與我們聯繫</label>
+        <label><input type="checkbox" name="contact-method">透過 LINE 與我們聯繫</label>
+        <label><input type="checkbox" name="contact-method">直接線上預約資料</label>
+        <label><input type="checkbox" name="contact-method">其他方式</label>
       </div>
-      <textarea placeholder="請輸入您的 LINE 顯示名稱或 Facebook 名稱"></textarea>
-    </div>
 
-    <!-- 導向按鈕 -->
-    <div class="button-container">
-      <a href="final-booking.html" class="btn">下一步 ➜ 【預約資料填寫】</a>
-    </div>
+      <!-- 名稱輸入框 -->
+      <div class="card">
+        <h2>Line 名稱 or Facebook 名稱 <span class="required">*</span></h2>
+        <!-- 圖片展示區塊 -->
+        <div class="image-wrapper">
+          <img src="imagesexample.jpg" alt="名稱填寫示範圖">
+        </div>
+        <textarea name="contact-name" placeholder="請輸入您的 LINE 顯示名稱或 Facebook 名稱" required></textarea>
+      </div>
+
+      <!-- 導向按鈕 -->
+      <div class="button-container">
+        <button type="submit" class="btn">下一步 ➜ 【預約資料填寫】</button>
+      </div>
+    </form>
   </div>
 </body>
 </html>
