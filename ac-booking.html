@@ -263,6 +263,12 @@
         });
       });
     });
+        // 跨頁同步
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'theme') {
+        applyTheme(event.newValue);
+      }
+    });
   </script>
 </body>
 </html>
