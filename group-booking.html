@@ -121,17 +121,12 @@
     </section>
 
     <div class="nav-buttons">
-      <a href="index.html">← 回首頁</a>
+      <a href="index.html">回首頁</a>
       <a href="contact.html">下一步 ➜ 【聯繫名稱說明】</a>
     </div>
   </main>
 
-  <script>
-    (function () {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark-mode');
-      }
-    })();
-  </script>
+  <!-- ✅ 改用獨立 JS 管理深色模式 -->
+  <script src="theme.js"></script>
 </body>
 </html>
