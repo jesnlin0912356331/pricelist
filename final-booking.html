@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5; /* 淺灰背景 */
+      background-color: #f5f5f5;
       color: #333;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -20,7 +20,7 @@
     }
     h1 {
       font-size: 1.8em;
-      color: #007bff; /* 藍色標題色碼 */
+      color: #007bff;
       margin-bottom: 15px;
       text-align: left;
     }
@@ -77,16 +77,14 @@
       color: white;
       border-radius: 5px;
       cursor: pointer;
-      text-decoration: none;
       font-size: 1em;
       margin: 5px;
-      display: inline-block;
     }
     .btn:hover {
       background-color: #0056b3;
     }
 
-    /* 提示框樣式 */
+    /* 提示框 */
     .toast {
       position: fixed;
       top: 50%;
@@ -103,41 +101,36 @@
     }
 
     /* 深色模式 */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #222;
-        color: #fff;
-      }
-      h1 {
-        color: #66b3ff;
-      }
-      .card {
-        background: #333;
-        border: 1px solid #555;
-      }
-      .card h2 {
-        color: #66b3ff;
-      }
-      input[type="text"], input[type="tel"], textarea {
-        background: #444;
-        color: #fff;
-        border: 1px solid #666;
-      }
-      .toast {
-        background: #66b3ff;
-        color: #000;
-      }
+    body.dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+    body.dark-mode h1 {
+      color: #66b3ff;
+    }
+    body.dark-mode .card {
+      background: #333;
+      border: 1px solid #555;
+    }
+    body.dark-mode .card h2 {
+      color: #66b3ff;
+    }
+    body.dark-mode input[type="text"],
+    body.dark-mode input[type="tel"],
+    body.dark-mode textarea {
+      background: #444;
+      color: #fff;
+      border: 1px solid #666;
+    }
+    body.dark-mode .toast {
+      background: #66b3ff;
+      color: #000;
     }
 
     /* RWD */
     @media (max-width: 600px) {
-      h1 {
-        font-size: 1.5em;
-      }
-      .btn {
-        font-size: 0.9em;
-        padding: 8px 14px;
-      }
+      h1 { font-size: 1.5em; }
+      .btn { font-size: 0.9em; padding: 8px 14px; }
     }
   </style>
 </head>
@@ -148,85 +141,90 @@
       <p>此資料僅供預約清洗服務使用，請您詳細填寫以下資訊，以利我們安排最合適的服務時段，謝謝您的配合！</p>
     </div>
 
-    <!-- 預約時段 -->
-    <div class="card">
-      <h2>煩請您告知時段（可複選）<span class="required">*</span></h2>
-      <label><input type="checkbox" name="time">平日</label>
-      <label><input type="checkbox" name="time">假日</label>
-      <label><input type="checkbox" name="time">上午</label>
-      <label><input type="checkbox" name="time">下午</label>
-      <label><input type="checkbox" name="time">皆可</label>
-      <label><input type="checkbox" id="otherTime" name="time">其他指定時間</label>
-      <textarea id="otherTimeInput" placeholder="請輸入您的指定時段" style="display:none;"></textarea>
-    </div>
+    <form id="bookingForm">
+      <!-- 預約時段 -->
+      <div class="card">
+        <h2>煩請您告知時段（可複選）<span class="required">*</span></h2>
+        <label><input type="checkbox" name="time">平日</label>
+        <label><input type="checkbox" name="time">假日</label>
+        <label><input type="checkbox" name="time">上午</label>
+        <label><input type="checkbox" name="time">下午</label>
+        <label><input type="checkbox" name="time">皆可</label>
+        <label><input type="checkbox" id="otherTime" name="time">其他指定時間</label>
+        <textarea id="otherTimeInput" placeholder="請輸入您的指定時段" style="display:none;"></textarea>
+      </div>
 
-    <!-- 姓名 -->
-    <div class="card">
-      <h2>顧客姓名<span class="required">*</span></h2>
-      <input type="text" id="name" placeholder="請輸入您的姓名" required>
-    </div>
+      <!-- 姓名 -->
+      <div class="card">
+        <h2>顧客姓名<span class="required">*</span></h2>
+        <input type="text" id="name" placeholder="請輸入您的姓名" required>
+      </div>
 
-    <!-- 電話 -->
-    <div class="card">
-      <h2>聯繫電話<span class="required">*</span></h2>
-      <input type="tel" id="phone" placeholder="請輸入您的聯絡電話" required>
-    </div>
+      <!-- 電話 -->
+      <div class="card">
+        <h2>聯繫電話<span class="required">*</span></h2>
+        <input type="tel" id="phone" placeholder="請輸入您的聯絡電話" required>
+      </div>
 
-    <!-- 方便聯繫時間 -->
-    <div class="card">
-      <h2>方便聯繫時間（可複選）<span class="required">*</span></h2>
-      <label><input type="checkbox" name="contact">平日</label>
-      <label><input type="checkbox" name="contact">假日</label>
-      <label><input type="checkbox" name="contact">上午</label>
-      <label><input type="checkbox" name="contact">下午</label>
-      <label><input type="checkbox" name="contact">晚上</label>
-      <label><input type="checkbox" name="contact">皆可</label>
-    </div>
+      <!-- 方便聯繫時間 -->
+      <div class="card">
+        <h2>方便聯繫時間（可複選）<span class="required">*</span></h2>
+        <label><input type="checkbox" name="contact">平日</label>
+        <label><input type="checkbox" name="contact">假日</label>
+        <label><input type="checkbox" name="contact">上午</label>
+        <label><input type="checkbox" name="contact">下午</label>
+        <label><input type="checkbox" name="contact">晚上</label>
+        <label><input type="checkbox" name="contact">皆可</label>
+      </div>
 
-    <!-- 地址 -->
-    <div class="card">
-      <h2>清洗保養地址<span class="required">*</span></h2>
-      <textarea id="address" placeholder="請輸入完整地址" required></textarea>
-    </div>
+      <!-- 地址 -->
+      <div class="card">
+        <h2>清洗保養地址<span class="required">*</span></h2>
+        <textarea id="address" placeholder="請輸入完整地址" required></textarea>
+      </div>
 
-    <!-- 居住地型態 -->
-    <div class="card">
-      <h2>居住地型態<span class="required">*</span></h2>
-      <label><input type="radio" name="houseType">透天屋</label>
-      <label><input type="radio" name="houseType">大樓（有電梯）</label>
-      <label><input type="radio" name="houseType">大樓（無電梯）</label>
-      <label><input type="radio" name="houseType" id="otherType">其他</label>
-      <textarea id="otherTypeInput" placeholder="請輸入居住地型態" style="display:none;"></textarea>
-    </div>
+      <!-- 居住地型態 -->
+      <div class="card">
+        <h2>居住地型態<span class="required">*</span></h2>
+        <label><input type="radio" name="houseType">透天屋</label>
+        <label><input type="radio" name="houseType">大樓（有電梯）</label>
+        <label><input type="radio" name="houseType">大樓（無電梯）</label>
+        <label><input type="radio" name="houseType" id="otherType">其他</label>
+        <textarea id="otherTypeInput" placeholder="請輸入居住地型態" style="display:none;"></textarea>
+      </div>
 
-    <!-- 備註 -->
-    <div class="card">
-      <h2>✍️ 其他備註說明（如有特殊需求或補充）</h2>
-      <textarea placeholder="請輸入備註"></textarea>
-    </div>
+      <!-- 備註 -->
+      <div class="card">
+        <h2>✍️ 其他備註說明（如有特殊需求或補充）</h2>
+        <textarea placeholder="請輸入備註"></textarea>
+      </div>
 
-    <!-- 完成按鈕 -->
-    <div class="button-container">
-      <button class="btn" id="submitBtn">完成填寫</button>
-    </div>
+      <!-- 完成按鈕 -->
+      <div class="button-container">
+        <button type="submit" class="btn">完成填寫</button>
+      </div>
+    </form>
   </div>
 
   <!-- 提示框 -->
   <div class="toast" id="toast">感謝您填寫預約資料🙏<br>我們將盡快與您聯繫，安排最合適的清洗服務時段！</div>
 
+  <!-- 引入 JS -->
+  <script src="theme.js"></script>
   <script>
-    // 顯示/隱藏「其他指定時間」輸入框
+    // 顯示/隱藏「其他指定時間」
     document.getElementById("otherTime").addEventListener("change", function() {
       document.getElementById("otherTimeInput").style.display = this.checked ? "block" : "none";
     });
 
-    // 顯示/隱藏「其他居住地型態」輸入框
+    // 顯示/隱藏「其他居住地型態」
     document.getElementById("otherType").addEventListener("change", function() {
       document.getElementById("otherTypeInput").style.display = this.checked ? "block" : "none";
     });
 
-    // 提交驗證
-    document.getElementById("submitBtn").addEventListener("click", function() {
+    // 表單提交檢查
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
       let name = document.getElementById("name").value.trim();
       let phone = document.getElementById("phone").value.trim();
       let address = document.getElementById("address").value.trim();
@@ -243,36 +241,9 @@
       toast.style.display = "block";
       setTimeout(() => {
         toast.style.display = "none";
-        window.location.href = "index.html"; // 跳回首頁
+        window.location.href = "index.html";
       }, 3000);
     });
   </script>
-  <script>
-  // 頁面載入時自動檢查 localStorage 的模式
-  (function () {
-    const userTheme = localStorage.getItem("theme");
-    if (userTheme === "dark") {
-      document.body.classList.add("dark-mode");
-    } else if (userTheme === "light") {
-      document.body.classList.remove("dark-mode");
-    } else {
-      // 如果沒選過，就跟隨系統
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.body.classList.add("dark-mode");
-      }
-    }
-  })();
-
-  // 提供一個切換函式（首頁 index.html 的按鈕會用到）
-  function toggleTheme() {
-    if (document.body.classList.contains("dark-mode")) {
-      document.body.classList.remove("dark-mode");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.body.classList.add("dark-mode");
-      localStorage.setItem("theme", "dark");
-    }
-  }
-</script>
 </body>
 </html>
