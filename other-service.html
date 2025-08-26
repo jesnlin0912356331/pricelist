@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>【其他清洗服務】｜自然大叔</title>
   <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --primary: #2563eb; /* ✅ 改新版標題藍 */
+    }
+    body.dark-mode {
+      --bg: #121212;
+      --text: #f5f5f5;
+      --primary: #3b82f6; /* ✅ 深色模式藍 */
+    }
+
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
@@ -14,21 +25,10 @@
       color: var(--text);
       transition: background 0.3s, color 0.3s;
     }
-    :root {
-      --bg: #ffffff;
-      --text: #000000;
-      --primary: #2563eb; /* ✅ 改新版標題藍 */
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #121212;
-        --text: #f5f5f5;
-        --primary: #2563eb;
-      }
-    }
 
+    /* ✅ 頂部標題區塊，統一 bulk-booking 風格 */
     .page-header {
-      background: #f3f4f6;
+      background: #f3f4f6; /* 灰底 */
       border-bottom: 1px solid #d1d5db;
       padding: 30px 20px;
       text-align: center;
@@ -39,14 +39,9 @@
       font-weight: bold;
       color: var(--primary);
     }
-    @media (prefers-color-scheme: dark) {
-      .page-header {
-        background: #1f2937;
-        border-bottom: 1px solid #374151;
-      }
-      .page-header h1 {
-        color: #3b82f6;
-      }
+    body.dark-mode .page-header {
+      background: #1f2937;
+      border-bottom: 1px solid #374151;
     }
 
     .container {
@@ -98,11 +93,12 @@
       resize: vertical;
       font-size: 1rem;
       margin: 10px;
-      display: none;
+      display: none; /* ✅ 預設隱藏 */
     }
   </style>
 </head>
 <body>
+  <!-- ✅ 頂部標題區塊 -->
   <div class="page-header">
     <h1>其他清洗｜自然大叔</h1>
   </div>
@@ -186,27 +182,8 @@
         textarea.style.display = checkbox.checked ? "block" : "none";
       });
     });
-
-    // ✅ 與首頁 index.html 同步深色/淺色模式
-    (function () {
-      const userTheme = localStorage.getItem("theme");
-      if (userTheme === "dark") {
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else if (userTheme === "light") {
-        document.documentElement.setAttribute("data-theme", "light");
-      } else {
-        // 沒設定則依照系統
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      }
-    })();
-        // 跨頁同步
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'theme') {
-        applyTheme(event.newValue);
-      }
-    });
   </script>
+  <!-- ✅ 改成獨立 JS -->
+  <script src="theme.js"></script>
 </body>
 </html>
