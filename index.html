@@ -27,6 +27,60 @@
       --button-text: #fff;
     }
 
+	/* 突顯區塊 */
+	.highlight-section {
+  	background: #e9f5ff;
+  	border: 2px solid #007BFF;
+  	border-radius: 12px;
+  	box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  	padding: 25px 20px;
+  	margin: 30px auto;
+  	max-width: 900px;
+  	text-align: center;
+	}
+
+	/* 提示 Banner */
+	.highlight-banner {
+  	background: #007BFF;
+  	color: #fff;
+  	font-weight: bold;
+  	padding: 10px;
+  	border-radius: 6px;
+  	margin-bottom: 20px;
+  	font-size: 1rem;
+	}
+
+	/* 卡片式按鈕 */
+	.service-links {
+  	display: grid;
+  	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  	gap: 15px;
+  	margin-top: 20px;
+	}
+	.service-links a {
+  	display: block;
+  	padding: 18px;
+  	background: #007BFF;
+  	color: #fff;
+  	border-radius: 10px;
+  	font-size: 1rem;
+  	font-weight: bold;
+  	text-decoration: none;
+  	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  	transition: transform 0.2s, background 0.3s;
+	}
+	.service-links a small {
+  	display: block;
+  	font-weight: normal;
+  	font-size: 0.85rem;
+  	margin-top: 6px;
+  	color: #e0e0e0;
+	}
+	.service-links a:hover {
+  	background: #0056b3;
+  	transform: translateY(-3px);
+	}
+
     body {
       font-family: "Noto Sans TC", sans-serif;
       margin: 0;
@@ -188,15 +242,18 @@
     <p><strong>✳️ 家用水塔（兩頓內）清洗</strong>：每顆 💲1000<br>同時清洗自來水管再優惠 💲200</p>
   </section>
 
-  <section>
-    <h2>🛠️ 服務項目選擇</h2>
-    <ul>
-      <li>📌 <a href="ac-booking.html">【冷氣清洗】</a>（可於選項中加購 直立式洗衣機清洗、水塔）</li>
-      <li>📌 <a href="other-service.html">【其他保養清洗】</a>（自來水管、直立式洗衣機、水塔）</li>
-      <li>📌 <a href="group-booking.html">【團購預約清洗】</a>（左右鄰居、正對面鄰居、大樓同棟住戶、不需上車移動設備）</li>
-      <li>📌 <a href="bulk-booking.html">【大量清洗需求】</a>（整棟大樓、民宿、房東、10台以上）</li>
-    </ul>
-  </section>
+<section class="highlight-section">
+  <!-- 上方提示 Banner -->
+  <p class="highlight-banner">👉 請選擇您的清洗需求，系統將引導您進入專屬預約流程</p>
+
+  <h2>🛠️ 服務項目選擇</h2>
+  <div class="service-links">
+    <a href="ac-booking.html">❄️ 冷氣清洗<br><small>（可加購 洗衣機 / 水塔）</small></a>
+    <a href="other-service.html">🧺 其他保養清洗<br><small>（自來水管、洗衣機、水塔）</small></a>
+    <a href="group-booking.html">👨‍👩‍👧‍👦 團購預約清洗<br><small>（鄰居、大樓同棟住戶）</small></a>
+    <a href="bulk-booking.html">🏢 大量清洗需求<br><small>（整棟大樓、民宿、10台以上）</small></a>
+  </div>
+</section>
 
   <footer>
     <p>聯絡我們｜<a href="https://lin.ee/uWxrnKM" target="_blank">LINE 官方帳號</a> ｜ <a href="https://www.facebook.com/NaturalUncleTW" target="_blank">Facebook 粉絲專頁</a></p>
