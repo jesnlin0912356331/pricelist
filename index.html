@@ -10,7 +10,7 @@
       --text-color: #333;
       --card-bg: #f0f2f5;
       --card-border: #ddd;
-      --title-color: #007BFF;
+      --title-color: #007BFF; /* ✅ 改為新版藍色 */
       --button-bg: #007BFF;
       --button-hover: #0056b3;
       --button-text: #fff;
@@ -21,7 +21,7 @@
       --text-color: #ffffff;
       --card-bg: #1e1e1e;
       --card-border: #444;
-      --title-color: #4da6ff;
+      --title-color: #4da6ff; /* ✅ 深色模式藍色 */
       --button-bg: #4da6ff;
       --button-hover: #1a75d1;
       --button-text: #fff;
@@ -73,7 +73,7 @@
       border: 1px solid var(--card-border);
       border-radius: 12px;
       transition: background 0.3s, border 0.3s;
-      position: relative;
+      position: relative; /* 讓按鈕定位於此區塊 */
     }
 
     h2, h3 {
@@ -191,10 +191,10 @@
   <section>
     <h2>🛠️ 服務項目選擇</h2>
     <ul>
-      <li>📌 <a href="ac-booking.html">【冷氣清洗】</a></li>
-      <li>📌 <a href="other-service.html">【其他保養清洗】</a></li>
-      <li>📌 <a href="group-booking.html">【團購預約清洗】</a></li>
-      <li>📌 <a href="bulk-booking.html">【大量清洗需求】</a></li>
+      <li>📌 <a href="ac-booking.html">【冷氣清洗】</a>（可於選項中加購 直立式洗衣機清洗、水塔）</li>
+      <li>📌 <a href="other-service.html">【其他保養清洗】</a>（自來水管、直立式洗衣機、水塔）</li>
+      <li>📌 <a href="group-booking.html">【團購預約清洗】</a>（左右鄰居、正對面鄰居、大樓同棟住戶、不需上車移動設備）</li>
+      <li>📌 <a href="bulk-booking.html">【大量清洗需求】</a>（整棟大樓、民宿、房東、10台以上）</li>
     </ul>
   </section>
 
@@ -202,41 +202,7 @@
     <p>聯絡我們｜<a href="https://lin.ee/uWxrnKM" target="_blank">LINE 官方帳號</a> ｜ <a href="https://www.facebook.com/NaturalUncleTW" target="_blank">Facebook 粉絲專頁</a></p>
   </footer>
 
-  <script>
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-      } else {
-        document.body.classList.remove('dark-mode');
-      }
-    }
-
-    function toggleTheme() {
-      const isDark = document.body.classList.toggle('dark-mode');
-      const theme = isDark ? 'dark' : 'light';
-      localStorage.setItem('theme', theme);
-      applyTheme(theme);
-    }
-
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        applyTheme(savedTheme);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        applyTheme('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        applyTheme('light');
-        localStorage.setItem('theme', 'light');
-      }
-    })();
-
-    // 跨頁同步
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'theme') {
-        applyTheme(event.newValue);
-      }
-    });
-  </script>
+  <!-- ✅ 改用獨立 JS -->
+  <script src="theme.js"></script>
 </body>
 </html>
