@@ -17,14 +17,12 @@
     :root {
       --bg: #ffffff;
       --text: #000000;
-      --primary: #2563eb; /* ✅ 改新版標題藍 */
+      --primary: #2563eb;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #121212;
-        --text: #f5f5f5;
-        --primary: #2563eb; /* ✅ 深色模式新版標題藍 */
-      }
+    body.dark-mode {
+      --bg: #121212;
+      --text: #f5f5f5;
+      --primary: #2563eb;
     }
     .container {
       padding: 20px;
@@ -66,6 +64,10 @@
       margin-top: 0;
       color: var(--primary);
     }
+    body.dark-mode .service-box {
+      background: rgba(255,255,255,0.05);
+      border-color: #444;
+    }
   </style>
 </head>
 <body>
@@ -105,5 +107,8 @@
       <a href="other-service.html">下一步 ➜ 【其他清洗服務】</a>
     </div>
   </div>
+
+  <!-- ✅ 引入獨立 JS 檔 -->
+  <script src="theme.js"></script>
 </body>
 </html>
