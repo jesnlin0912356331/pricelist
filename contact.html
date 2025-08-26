@@ -9,9 +9,23 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5; /* 淺灰背景 */
-      color: #333;
+      background-color: var(--bg);
+      color: var(--text);
       transition: background-color 0.3s, color 0.3s;
+    }
+    :root {
+      --bg: #f5f5f5;
+      --text: #333;
+      --primary: #007bff;
+      --card-bg: #fff;
+      --card-border: #ddd;
+    }
+    body.dark-mode {
+      --bg: #222;
+      --text: #fff;
+      --primary: #66b3ff;
+      --card-bg: #333;
+      --card-border: #555;
     }
     .container {
       max-width: 900px;
@@ -20,9 +34,9 @@
     }
     h1 {
       font-size: 1.8em;
-      color: #007bff; /* 藍色標題色碼 */
+      color: var(--primary);
       margin-bottom: 15px;
-      text-align: left; /* 靠左 */
+      text-align: left;
     }
     .intro {
       margin-bottom: 20px;
@@ -32,14 +46,14 @@
       line-height: 1.6;
     }
     .card {
-      background: #fff; /* 白色卡片 */
-      border: 1px solid #ddd;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 8px;
       padding: 20px;
       margin-bottom: 20px;
     }
     .card h2 {
-      color: #007bff;
+      color: var(--primary);
       font-size: 1.4em;
       margin-bottom: 10px;
     }
@@ -47,10 +61,11 @@
       display: block;
       margin: 8px 0;
     }
-    input[type="checkbox"] {
+    input[type="radio"] {
       margin-right: 8px;
     }
-    textarea {
+    textarea, 
+    input[type="text"] {
       width: 100%;
       padding: 12px;
       margin-top: 10px;
@@ -59,6 +74,11 @@
       box-sizing: border-box;
       resize: vertical;
       min-height: 100px;
+      background: var(--card-bg);
+      color: var(--text);
+    }
+    input[type="text"] {
+      min-height: auto; /* ✅ 輸入框高度調整為正常文字框 */
     }
     .image-wrapper {
       margin: 15px 0;
@@ -68,15 +88,15 @@
       max-width: 100%;
       height: auto;
       border-radius: 6px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--card-border);
     }
     .button-container {
-      text-align: center; /* 置中顯示 */
+      text-align: center;
       margin-top: 30px;
     }
     .btn {
       padding: 10px 20px;
-      background-color: #007bff;
+      background-color: var(--primary);
       border: none;
       color: white;
       border-radius: 5px;
@@ -87,40 +107,12 @@
       display: inline-block;
     }
     .btn:hover {
-      background-color: #0056b3;
+      opacity: 0.9;
     }
-
     .required {
       color: red;
       margin-left: 4px;
     }
-
-    /* 深色模式 */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #222;
-        color: #fff;
-      }
-      h1 {
-        color: #66b3ff;
-      }
-      .card {
-        background: #333;
-        border: 1px solid #555;
-      }
-      .card h2 {
-        color: #66b3ff;
-      }
-      textarea {
-        background: #444;
-        color: #fff;
-        border: 1px solid #666;
-      }
-      .image-wrapper img {
-        border: 1px solid #666;
-      }
-    }
-
     /* RWD */
     @media (max-width: 600px) {
       h1 {
@@ -137,7 +129,6 @@
   <div class="container">
     <h1>聯繫名稱說明</h1>
 
-    <!-- 開頭說明文字 -->
     <div class="intro">
       <p>為了加快預約與資料比對速度，煩請您提供下列聯繫名稱：</p>
       <p>✅ 使用 LINE 聯繫者：請填寫您的 LINE 顯示名稱（非ID）</p>
@@ -146,30 +137,51 @@
     </div>
 
     <form action="final-booking.html" method="get">
-      <!-- 聯繫方式選項 -->
       <div class="card">
         <h2>📞 與我們聯繫方式 <span class="required">*</span></h2>
-        <label><input type="checkbox" name="contact-method" required>透過 Facebook 粉絲團與我們聯繫</label>
-        <label><input type="checkbox" name="contact-method">透過 LINE 與我們聯繫</label>
-        <label><input type="checkbox" name="contact-method">直接線上預約資料</label>
-        <label><input type="checkbox" name="contact-method">其他方式</label>
+        <label><input type="radio" name="contact-method" value="facebook" required>透過 Facebook 粉絲團與我們聯繫</label>
+        <label><input type="radio" name="contact-method" value="line">透過 LINE 與我們聯繫</label>
+        <label><input type="radio" name="contact-method" value="online">直接線上預約資料</label>
+        <label>
+          <input type="radio" name="contact-method" value="other">其他方式
+        </label>
+        <!-- ✅ 隱藏輸入框 -->
+        <input type="text" id="other-input" name="other-method" placeholder="請輸入其他聯繫方式" style="display:none;">
       </div>
 
-      <!-- 名稱輸入框 -->
       <div class="card">
-        <h2>Line 名稱 or Facebook 名稱 <span class="required">*</span></h2>
-        <!-- 圖片展示區塊 -->
+        <h2>LINE 名稱 or Facebook 名稱 <span class="required">*</span></h2>
         <div class="image-wrapper">
           <img src="imagesexample.jpg" alt="名稱填寫示範圖">
         </div>
         <textarea name="contact-name" placeholder="請輸入您的 LINE 顯示名稱或 Facebook 名稱" required></textarea>
       </div>
 
-      <!-- 導向按鈕 -->
       <div class="button-container">
         <button type="submit" class="btn">下一步 ➜ 【預約資料填寫】</button>
       </div>
     </form>
   </div>
+
+  <!-- ✅ 引入獨立 JS -->
+  <script src="theme.js"></script>
+  <script>
+    // ✅ 控制 "其他方式" 顯示輸入框
+    const radios = document.querySelectorAll('input[name="contact-method"]');
+    const otherInput = document.getElementById('other-input');
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === "other" && radio.checked) {
+          otherInput.style.display = "block";
+          otherInput.required = true;
+        } else {
+          otherInput.style.display = "none";
+          otherInput.required = false;
+          otherInput.value = "";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
