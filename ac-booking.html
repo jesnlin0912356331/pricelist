@@ -83,13 +83,13 @@
       border: 1px solid #d1d5db;
     }
 
-    /* ✅ 輸入框 */
+    /* ✅ 隱藏輸入框 */
     .hidden-input {
       display: none;
-      margin-top: 10px;
+      margin: 10px;
     }
     .hidden-input input {
-      width: 100%;
+      width: calc(100% - 20px);
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
@@ -128,16 +128,16 @@
       margin-left: 3px;
     }
 
-    /* ✅ 深色模式 (自動) */
-    @media (prefers-color-scheme: dark) {
-      body { background: #111827; color: #ffffff; }
-      .page-header { background: #1f2937; border-bottom: 1px solid #374151; }
-      .page-header h1 { color: #3b82f6; }
-      .section { border: 1px solid #374151; background: #1f2937; }
-      .section h2 { color: #3b82f6; }
-      label, .radio-group label, .checkbox-group label { color: #ffffff; }
-      .hidden-input input { background: #374151; color: #fff; border: 1px solid #555; }
-    }
+    /* 深色模式（由 theme.js 控制） */
+    body.dark-mode { background: #111827; color: #ffffff; }
+    body.dark-mode .page-header { background: #1f2937; border-bottom: 1px solid #374151; }
+    body.dark-mode .page-header h1 { color: #3b82f6; }
+    body.dark-mode .section { border: 1px solid #374151; background: #1f2937; }
+    body.dark-mode .section h2 { color: #3b82f6; }
+    body.dark-mode label,
+    body.dark-mode .radio-group label,
+    body.dark-mode .checkbox-group label { color: #ffffff; }
+    body.dark-mode .hidden-input input { background: #374151; color: #fff; border: 1px solid #555; }
 
     /* ✅ 手機優化 */
     @media (max-width: 600px) {
@@ -187,7 +187,6 @@
           <input type="radio" id="more-option" name="quantity" value="5台以上">
           5 台以上
         </label>
-        <!-- 隱藏輸入框 -->
         <div class="hidden-input" id="more-input">
           <input type="number" name="quantity_more" min="6" placeholder="請輸入清洗數量（6 台以上）">
         </div>
@@ -201,7 +200,13 @@
         <label><input type="radio" name="floor" value="1樓" required> 1 樓</label>
         <label><input type="radio" name="floor" value="2樓"> 2 樓</label>
         <label><input type="radio" name="floor" value="3樓"> 3 樓</label>
-        <label><input type="radio" name="floor" value="4樓以上"> 4 樓以上</label>
+        <label>
+          <input type="radio" id="floor-other" name="floor" value="4樓以上">
+          4 樓以上
+        </label>
+        <div class="hidden-input" id="floor-input">
+          <input type="text" name="floor_detail" placeholder="請輸入具體樓層資訊">
+        </div>
       </div>
     </div>
 
@@ -221,7 +226,13 @@
         <label><input type="checkbox" name="brand[]" value="Heran 禾聯">Heran 禾聯</label>
         <label><input type="checkbox" name="brand[]" value="Kolin 歌林">Kolin 歌林</label>
         <label><input type="checkbox" name="brand[]" value="TATUNG 大同">TATUNG 大同</label>
-        <label><input type="checkbox" name="brand[]" value="其他">其他</label>
+        <label>
+          <input type="checkbox" id="brand-other" name="brand[]" value="其他">
+          其他
+        </label>
+        <div class="hidden-input" id="brand-input">
+          <input type="text" name="brand_detail" placeholder="請輸入品牌名稱">
+        </div>
       </div>
     </div>
 
@@ -246,6 +257,7 @@
     </div>
   </form>
 
+  <!-- ✅ 功能腳本 -->
   <script>
     // ✅ 勾選「5台以上」時顯示輸入框
     document.addEventListener("DOMContentLoaded", () => {
@@ -255,20 +267,27 @@
 
       radios.forEach(radio => {
         radio.addEventListener("change", () => {
-          if (moreOption.checked) {
-            moreInput.style.display = "block";
-          } else {
-            moreInput.style.display = "none";
-          }
+          moreInput.style.display = moreOption.checked ? "block" : "none";
         });
       });
-    });
-        // 跨頁同步
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'theme') {
-        applyTheme(event.newValue);
-      }
+
+      // ✅ 樓層輸入框
+      const floorOther = document.getElementById("floor-other");
+      const floorInput = document.getElementById("floor-input");
+      document.querySelectorAll("input[name='floor']").forEach(radio => {
+        radio.addEventListener("change", () => {
+          floorInput.style.display = floorOther.checked ? "block" : "none";
+        });
+      });
+
+      // ✅ 品牌輸入框
+      const brandOther = document.getElementById("brand-other");
+      const brandInput = document.getElementById("brand-input");
+      brandOther.addEventListener("change", () => {
+        brandInput.style.display = brandOther.checked ? "block" : "none";
+      });
     });
   </script>
+  <script src="theme.js"></script>
 </body>
 </html>
