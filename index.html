@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <!-- 基本資訊與響應式設定 -->
+  <!--
+    [HEAD：基本資訊與響應式設定]
+    - lang="zh-Hant"：宣告頁面主要語系為繁體中文，利於 SEO 與助讀工具。
+    - <meta charset="UTF-8">：使用 UTF-8 避免中文亂碼。
+    - <meta name="viewport">：RWD，讓手機以裝置寬度呈現並初始縮放 1.0。
+    - <title>：瀏覽器分頁標題與搜尋結果標題。
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>自然大叔 線上預約平台</title>
 
   <style>
-    /* ========== 設計 Token（淺色主題） ========== */
+    /* =========================================================
+       設計 Token（淺色主題）
+       - 以 CSS 變數集中管理顏色與主題，方便維護與套用深色模式。
+       ========================================================= */
     :root {
-      --bg-color: #ffffff;
-      --text-color: #333;
-      --card-bg: #f0f2f5;
-      --card-border: #ddd;
-      --title-color: #007BFF;     /* 新版藍色 */
-      --button-bg: #007BFF;
-      --button-hover: #0056b3;
-      --button-text: #fff;
+      --bg-color: #ffffff;   /* 全站背景（淺） */
+      --text-color: #333;    /* 主要文字（淺） */
+      --card-bg: #f0f2f5;    /* 卡片背景（淺） */
+      --card-border: #ddd;   /* 卡片邊框（淺） */
+      --title-color: #007BFF;/* 標題/連結主色（新版藍） */
+      --button-bg: #007BFF;  /* 按鈕主色（淺） */
+      --button-hover: #0056b3;/* 按鈕滑過色（淺） */
+      --button-text: #fff;   /* 按鈕文字顏色 */
     }
 
-    /* ========== 深色主題覆蓋（由 .dark-mode 啟動） ========== */
+    /* =========================================================
+       深色主題覆蓋（由 body.dark-mode 觸發）
+       - 僅覆蓋需要變更的 Token，其他樣式沿用預設。
+       ========================================================= */
     body.dark-mode {
-      --bg-color: #121212;
-      --text-color: #ffffff;
-      --card-bg: #1e1e1e;
-      --card-border: #444;
-      --title-color: #4da6ff;
-      --button-bg: #4da6ff;
-      --button-hover: #1a75d1;
-      --button-text: #fff;
+      --bg-color: #121212;    /* 全站背景（深） */
+      --text-color: #ffffff;  /* 主要文字（深） */
+      --card-bg: #1e1e1e;     /* 卡片背景（深） */
+      --card-border: #444;    /* 卡片邊框（深） */
+      --title-color: #4da6ff; /* 標題/連結主色（深） */
+      --button-bg: #4da6ff;   /* 按鈕主色（深） */
+      --button-hover: #1a75d1;/* 按鈕滑過色（深） */
+      --button-text: #fff;    /* 按鈕文字顏色 */
     }
 
-    /* ========== 強調導引區塊（首頁 CTA） ========== */
+    /* =========================================================
+       強調導引區塊（首頁 CTA）
+       - 置頂的行動呼籲卡片，吸引使用者前往預約流程。
+       ========================================================= */
     .highlight-section {
-      background: #e9f5ff;
-      border: 2px solid #007BFF;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+      background: #e9f5ff;                     /* 淡藍底呼應品牌藍 */
+      border: 2px solid #007BFF;               /* 主色邊框 */
+      border-radius: 12px;                     /* 柔和圓角 */
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); /* 藍色調陰影 */
       padding: 25px 20px;
       margin: 30px auto;
-      max-width: 900px;
+      max-width: 900px;                        /* 與內容主欄一致 */
       text-align: center;
     }
     .highlight-banner {
-      background: #007BFF;
+      background: #007BFF;   /* 主色條 */
       color: #fff;
       font-weight: bold;
       padding: 10px;
@@ -52,78 +67,90 @@
       font-size: 1.5rem;
     }
 
-    /* ========== 服務導流卡片 ========== */
+    /* =========================================================
+       服務導流卡片
+       - 用 CSS Grid 自適應欄數，按鈕型卡片具備移入上浮效果。
+       ========================================================= */
     .service-links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 視寬自動分欄 */
       gap: 15px;
       margin-top: 20px;
     }
     .service-links a {
       display: block;
       padding: 18px;
-      background: #007BFF;
+      background: #007BFF;   /* 主色背景 */
       color: #fff;
       border-radius: 10px;
-      font-size: 1.5rem;
+      font-size: 1.5rem;     /* 卡片主標字級 */
       font-weight: bold;
       text-decoration: none;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s, background 0.3s;
+      transition: transform 0.2s, background 0.3s; /* 平滑互動 */
     }
     .service-links a small {
       display: block;
       font-weight: normal;
       font-size: 1rem;
       margin-top: 6px;
-      color: #e0e0e0;
+      color: #e0e0e0;        /* 次要資訊低對比 */
     }
     .service-links a:hover {
-      background: #0056b3;
-      transform: translateY(-3px);
+      background: #0056b3;   /* hover 加深 */
+      transform: translateY(-3px); /* 輕微上浮 */
     }
 
-    /* ========== 全域排版 ========== */
+    /* =========================================================
+       全域排版
+       - 內容主欄卡片化；字型、行高與主題色使用變數。
+       ========================================================= */
     body {
-      font-family: "Noto Sans TC", sans-serif;
+      font-family: "Noto Sans TC", sans-serif;    /* 中文閱讀友善字型 */
       margin: 0;
       padding: 0;
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.3s, color 0.3s;    /* 主題切換過場 */
     }
     header {
-      position: relative;
+      position: relative; /* 若需在 header 內放絕對定位元素，可作為定位參考 */
       text-align: center;
     }
     header img {
-      width: 100%;
-      height: auto;
+      width: 100%;  /* 橫幅圖滿版寬度 */
+      height: auto; /* 自動維持比例 */
       display: block;
     }
     section {
       padding: 25px 20px;
-      max-width: 900px;
-      margin: 20px auto;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      max-width: 900px;                     /* 限制行寬提升可讀性 */
+      margin: 20px auto;                    /* 置中 */
+      background: var(--card-bg);           /* 卡片背景 */
+      border: 1px solid var(--card-border); /* 卡片邊框 */
       border-radius: 12px;
-      transition: background 0.3s, border 0.3s;
-      position: relative; /* 供內部元素定位（若未來需要） */
+      transition: background 0.3s, border 0.3s; /* 主題切換過場 */
+      position: relative; /* 若區塊內需定位子元素可用 */
     }
     h2, h3 {
-      color: var(--title-color);
-      margin-top: 0;
+      color: var(--title-color); /* 標題使用主色 */
+      margin-top: 0;             /* 與卡片上緣貼齊更整潔 */
     }
-    ul { padding-left: 20px; }
-    a { color: var(--title-color); text-decoration: none; }
+    ul { padding-left: 20px; }   /* 保持清單縮排 */
+    a  { color: var(--title-color); text-decoration: none; } /* 超連結以主色呈現 */
 
-    /* ========== 16:9 影片容器（若改嵌入 iframe 用得到） ========== */
+    /* =========================================================
+       16:9 影片容器（若改嵌入 iframe）
+       - 使用 padding-bottom 比例盒維持響應式 16:9。
+       ========================================================= */
     .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    /* ========== 頁腳 ========== */
+    /* =========================================================
+       頁腳
+       - 與卡片視覺一致，提供聯絡與外部平台連結。
+       ========================================================= */
     footer {
       background: var(--card-bg);
       border-top: 1px solid var(--card-border);
@@ -134,32 +161,42 @@
     }
     footer a { color: var(--title-color); text-decoration: none; }
 
-    /* ========== 浮動主題切換按鈕（隨捲動固定） ========== */
+    /* =========================================================
+       浮動主題切換按鈕（隨捲動固定）
+       - 固定於視窗右下角；桌機時以 clamp 智慧靠齊內容右緣。
+       - 使用 Token 控制顏色以支援深/淺色。
+       ========================================================= */
     .theme-toggle {
-      position: fixed; /* 固定於視窗位置 */
+      position: fixed; /* 固定於視窗 */
       right: clamp(16px, (100vw - 900px)/2, 48px);
-      /* 右邊距：手機至少 16px；桌機智能貼齊內容區右側；最大 48px */
+      /* 右邊距說明：
+         - 手機至少 16px；
+         - 桌機時 (100vw - 900px)/2 會貼近內容區；
+         - 上限 48px，避免過內縮。 */
       bottom: 20px;
       z-index: 999;
       padding: 10px 14px;
       font-size: 0.95rem;
       border: none;
-      border-radius: 999px; /* 膠囊圓角 */
+      border-radius: 999px; /* 膠囊形狀 */
       background: var(--button-bg);
       color: var(--button-text);
       box-shadow: 0 6px 18px rgba(0,0,0,.18);
       cursor: pointer;
       transition: background .25s, transform .2s, box-shadow .25s, opacity .25s;
-      opacity: 0.95;
+      opacity: 0.95; /* 微透明降低干擾感 */
     }
     .theme-toggle:hover {
       background: var(--button-hover);
-      transform: translateY(-2px);
+      transform: translateY(-2px);          /* 微上浮 */
       box-shadow: 0 10px 22px rgba(0,0,0,.22);
     }
     .theme-toggle:active { transform: translateY(0); }
 
-    /* 手機優化 */
+    /* =========================================================
+       手機優化
+       - 降低 section padding 與按鈕大小，提升可視資訊密度。
+       ========================================================= */
     @media (max-width: 768px) {
       section { padding: 20px 15px; }
       .theme-toggle {
@@ -169,19 +206,30 @@
         padding: 9px 12px;
       }
     }
-    /* 無障礙：偏好減少動效時避免動畫干擾 */
+
+    /* =========================================================
+       無障礙：偏好減少動效
+       - 當使用者系統偏好減少動態時，移除多餘過場動畫。
+       ========================================================= */
     @media (prefers-reduced-motion: reduce) {
       .theme-toggle { transition: none; }
     }
   </style>
 </head>
 <body>
-  <!-- 頁首 Banner（建議將檔名改為無空白更穩定，如 chatgpt-image.jpg） -->
+  <!--
+    頁首 Banner
+    - 建議將檔名避免空白（如 "chatgpt-image.jpg"），以降低伺服器或 CDN 編碼問題。
+    - alt 提供替代文字，提升無障礙與 SEO。
+  -->
   <header>
     <img src="ChatGPT Image.jpg" alt="自然大叔 線上預約系統 Banner">
   </header>
 
-  <!-- 關於我們 -->
+  <!--
+    關於我們
+    - 品牌理念與三大賣點摘要，快速建立信任感。
+  -->
   <section>
     <h2>關於我們</h2>
     <p>我們堅持「讓每一位顧客都能乾淨地使用家電」，以專業細膩的清洗服務，守護您與家人的健康。我們了解家電清洗的每個細節對您來說都是重要的，因此從藥劑到清洗手法，我們都秉持著高標準，給您最安心的選擇。</p>
@@ -192,7 +240,11 @@
     </ul>
   </section>
 
-  <!-- 清洗流程影片（目前為縮圖連結，載入快；可改 iframe 內嵌） -->
+  <!--
+    清洗流程影片
+    - 目前為「縮圖 + 連結新分頁」：載入快、相容性佳。
+    - 若要嵌入播放，建議改為 .video-container + <iframe>。
+  -->
   <section>
     <h2>清洗流程影片</h2>
     <a href="https://youtu.be/ogInCGKJipM?feature=shared" target="_blank" rel="noopener">
@@ -200,7 +252,11 @@
     </a>
   </section>
 
-  <!-- 服務項目與價格 -->
+  <!--
+    服務項目與價格
+    - 以文字呈現價目；若要「自動計價」，可把價目改為 JSON 由 JS 渲染。
+    - 特殊機型以清單列出，避免溝通落差。
+  -->
   <section>
     <h2>服務項目與價格</h2>
 
@@ -240,7 +296,10 @@
     <p><strong>✳️ 家用水塔（兩頓內）清洗</strong>：每顆 💲1000<br>同時清洗自來水管再優惠 💲200</p>
   </section>
 
-  <!-- 首頁導流／分流入口 -->
+  <!--
+    首頁導流／分流入口
+    - 以圖文卡片引導到不同預約流程頁面（請確認檔案存在）。
+  -->
   <section class="highlight-section">
     <p class="highlight-banner">👉 請選擇您的清洗需求，系統將引導您進入專屬預約流程</p>
 
@@ -253,7 +312,10 @@
     </div>
   </section>
 
-  <!-- 頁腳 -->
+  <!--
+    頁腳 Footer
+    - 提供聯絡方式與外部平台連結；target="_blank" 另開分頁，rel="noopener" 增加安全性。
+  -->
   <footer>
     <p>
       聯絡我們｜
@@ -262,57 +324,75 @@
     </p>
   </footer>
 
-  <!-- ========== 浮動深淺色切換按鈕（全站唯一） ========== -->
+  <!--
+    浮動深淺色切換按鈕
+    - 全站唯一一顆，固定在視窗右下，隨捲動可見。
+    - aria-label/title：提升無障礙可用性與工具提示。
+  -->
   <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換 深色／淺色" title="切換 深色／淺色">🌗 深淺色</button>
 
-  <!-- ========== 主題切換初始化腳本（可單獨運作；與 theme.js 共存） ========== -->
+  <!--
+    主題切換初始化腳本
+    - 功能：
+      1) 首次載入依 localStorage 或系統偏好設定主題；
+      2) 若外部未定義 window.toggleTheme()，在此提供；
+      3) 綁定按鈕點擊切換主題；
+      4) 捲動快速時暫時淡出按鈕，停止捲動後恢復（降低干擾）。
+    - 注意：此段可與外部 theme.js 共存；若已有更進階邏輯，可保留或替換。
+  -->
   <script>
     (function () {
       // 1) 初次載入：套用使用者前次選擇；若無則依系統偏好
-      const saved = localStorage.getItem('theme');
+      const saved = localStorage.getItem('theme'); // 可能值：'dark' | 'light' | null
       if (saved === 'dark') {
         document.body.classList.add('dark-mode');
       } else if (saved === 'light') {
         document.body.classList.remove('dark-mode');
       } else {
+        // 沒有偏好紀錄時，依系統偏好預設深色
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (prefersDark) document.body.classList.add('dark-mode');
       }
 
-      // 2) 若外部未提供 toggleTheme，這裡補上（讓 onclick 或其他元件也可共用）
+      // 2) 若外部未提供 toggleTheme，這裡補上（讓其它元件也能呼叫）
       if (typeof window.toggleTheme !== 'function') {
         window.toggleTheme = function () {
           document.body.classList.toggle('dark-mode');
-          localStorage.setItem('theme',
+          // 記錄最新偏好：深色/淺色
+          localStorage.setItem(
+            'theme',
             document.body.classList.contains('dark-mode') ? 'dark' : 'light'
           );
         };
       }
 
-      // 3) 綁定浮動按鈕事件
+      // 3) 綁定浮動按鈕事件：點擊切換深/淺色
       const btn = document.getElementById('theme-toggle');
       if (btn) {
         btn.addEventListener('click', window.toggleTheme);
 
-        // 捲動互動（選配）：快速上下捲動時稍微淡出，停止時恢復
+        // 4) 捲動互動（選配）：快速上下捲動時稍微淡出，停止時恢復
         let scrollTimer;
-        let lastY = window.scrollY;
+        let lastY = window.scrollY; // 記錄上次捲動位置，用以估算速度
         window.addEventListener('scroll', () => {
           const currY = window.scrollY;
-          const speed = Math.abs(currY - lastY);
+          const speed = Math.abs(currY - lastY); // 簡易速度估算
           lastY = currY;
 
           if (speed > 12) btn.style.opacity = 0.75; // 快速捲動時較不干擾視線
           clearTimeout(scrollTimer);
           scrollTimer = setTimeout(() => {
-            btn.style.opacity = 0.95; // 停止捲動後回復
+            btn.style.opacity = 0.95; // 停止捲動後回復預設透明度
           }, 120);
-        }, { passive: true });
+        }, { passive: true }); // passive 提升滾動效能
       }
     })();
   </script>
 
-  <!-- 若你仍有 theme.js，也可以保留；兩者可共存 -->
+  <!--
+    若你仍有 theme.js，也可以保留；兩者可共存
+    - 建議外部檔案負責更完整的主題管理（例如：跟隨系統變更、跨頁同步等）
+  -->
   <!-- <script src="theme.js"></script> -->
 </body>
 </html>
