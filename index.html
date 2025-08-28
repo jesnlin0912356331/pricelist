@@ -1,86 +1,89 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+  <!-- 基本資訊與響應式設定 -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>自然大叔 線上預約平台</title>
+
   <style>
+    /* ========== 設計 Token（淺色主題） ========== */
     :root {
       --bg-color: #ffffff;
       --text-color: #333;
       --card-bg: #f0f2f5;
       --card-border: #ddd;
-      --title-color: #007BFF; /* ✅ 改為新版藍色 */
+      --title-color: #007BFF;     /* 新版藍色 */
       --button-bg: #007BFF;
       --button-hover: #0056b3;
       --button-text: #fff;
     }
 
+    /* ========== 深色主題覆蓋（由 .dark-mode 啟動） ========== */
     body.dark-mode {
       --bg-color: #121212;
       --text-color: #ffffff;
       --card-bg: #1e1e1e;
       --card-border: #444;
-      --title-color: #4da6ff; /* ✅ 深色模式藍色 */
+      --title-color: #4da6ff;
       --button-bg: #4da6ff;
       --button-hover: #1a75d1;
       --button-text: #fff;
     }
 
-    /* 突顯區塊 */
+    /* ========== 強調導引區塊（首頁 CTA） ========== */
     .highlight-section {
-  	background: #e9f5ff;
-  	border: 2px solid #007BFF;
-  	border-radius: 12px;
-  	box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-  	padding: 25px 20px;
-  	margin: 30px auto;
-  	max-width: 900px;
-  	text-align: center;
-	}
+      background: #e9f5ff;
+      border: 2px solid #007BFF;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+      padding: 25px 20px;
+      margin: 30px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+    .highlight-banner {
+      background: #007BFF;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
 
-	/* 提示 Banner */
-	.highlight-banner {
-  	background: #007BFF;
-  	color: #fff;
-  	font-weight: bold;
-  	padding: 10px;
-  	border-radius: 6px;
-  	margin-bottom: 20px;
-  	font-size: 1.5rem;
-	}
-
-    /* 卡片式按鈕 */
+    /* ========== 服務導流卡片 ========== */
     .service-links {
-  	display: grid;
-  	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  	gap: 15px;
-  	margin-top: 20px;
-	}
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
     .service-links a {
-  	display: block;
-  	padding: 18px;
-  	background: #007BFF;
-  	color: #fff;
-  	border-radius: 10px;
-  	font-size: 1.5rem;
-  	font-weight: bold;
-  	text-decoration: none;
-  	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  	transition: transform 0.2s, background 0.3s;
-	}
+      display: block;
+      padding: 18px;
+      background: #007BFF;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s, background 0.3s;
+    }
     .service-links a small {
-  	display: block;
-  	font-weight: normal;
-  	font-size: 1rem;
-  	margin-top: 6px;
-  	color: #e0e0e0;
-	}
+      display: block;
+      font-weight: normal;
+      font-size: 1rem;
+      margin-top: 6px;
+      color: #e0e0e0;
+    }
     .service-links a:hover {
-  	background: #0056b3;
-  	transform: translateY(-3px);
-	}
+      background: #0056b3;
+      transform: translateY(-3px);
+    }
 
+    /* ========== 全域排版 ========== */
     body {
       font-family: "Noto Sans TC", sans-serif;
       margin: 0;
@@ -90,7 +93,6 @@
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
-
     header {
       position: relative;
       text-align: center;
@@ -100,25 +102,6 @@
       height: auto;
       display: block;
     }
-
-    /* 深色切換按鈕 */
-    .theme-toggle {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      padding: 8px 14px;
-      font-size: 0.9rem;
-      border: none;
-      border-radius: 6px;
-      background: var(--button-bg);
-      color: var(--button-text);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .theme-toggle:hover {
-      background: var(--button-hover);
-    }
-
     section {
       padding: 25px 20px;
       max-width: 900px;
@@ -127,37 +110,20 @@
       border: 1px solid var(--card-border);
       border-radius: 12px;
       transition: background 0.3s, border 0.3s;
-      position: relative; /* 讓按鈕定位於此區塊 */
+      position: relative; /* 供內部元素定位（若未來需要） */
     }
-
     h2, h3 {
       color: var(--title-color);
       margin-top: 0;
     }
+    ul { padding-left: 20px; }
+    a { color: var(--title-color); text-decoration: none; }
 
-    ul {
-      padding-left: 20px;
-    }
+    /* ========== 16:9 影片容器（若改嵌入 iframe 用得到） ========== */
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    a {
-      color: var(--title-color);
-      text-decoration: none;
-    }
-
+    /* ========== 頁腳 ========== */
     footer {
       background: var(--card-bg);
       border-top: 1px solid var(--card-border);
@@ -166,30 +132,57 @@
       margin-top: 30px;
       transition: background 0.3s, border 0.3s;
     }
-    footer a {
-      color: var(--title-color);
-      text-decoration: none;
+    footer a { color: var(--title-color); text-decoration: none; }
+
+    /* ========== 浮動主題切換按鈕（隨捲動固定） ========== */
+    .theme-toggle {
+      position: fixed; /* 固定於視窗位置 */
+      right: clamp(16px, (100vw - 900px)/2, 48px);
+      /* 右邊距：手機至少 16px；桌機智能貼齊內容區右側；最大 48px */
+      bottom: 20px;
+      z-index: 999;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 999px; /* 膠囊圓角 */
+      background: var(--button-bg);
+      color: var(--button-text);
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+      cursor: pointer;
+      transition: background .25s, transform .2s, box-shadow .25s, opacity .25s;
+      opacity: 0.95;
     }
+    .theme-toggle:hover {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+    }
+    .theme-toggle:active { transform: translateY(0); }
 
     /* 手機優化 */
     @media (max-width: 768px) {
-      section {
-        padding: 20px 15px;
-      }
+      section { padding: 20px 15px; }
       .theme-toggle {
-        font-size: 0.8rem;
-        padding: 6px 12px;
+        right: 16px;
+        bottom: 16px;
+        font-size: 0.9rem;
+        padding: 9px 12px;
       }
+    }
+    /* 無障礙：偏好減少動效時避免動畫干擾 */
+    @media (prefers-reduced-motion: reduce) {
+      .theme-toggle { transition: none; }
     }
   </style>
 </head>
 <body>
+  <!-- 頁首 Banner（建議將檔名改為無空白更穩定，如 chatgpt-image.jpg） -->
   <header>
     <img src="ChatGPT Image.jpg" alt="自然大叔 線上預約系統 Banner">
   </header>
 
+  <!-- 關於我們 -->
   <section>
-    <button class="theme-toggle" onclick="toggleTheme()">切換 深色／淺色</button>
     <h2>關於我們</h2>
     <p>我們堅持「讓每一位顧客都能乾淨地使用家電」，以專業細膩的清洗服務，守護您與家人的健康。我們了解家電清洗的每個細節對您來說都是重要的，因此從藥劑到清洗手法，我們都秉持著高標準，給您最安心的選擇。</p>
     <ul>
@@ -199,18 +192,22 @@
     </ul>
   </section>
 
+  <!-- 清洗流程影片（目前為縮圖連結，載入快；可改 iframe 內嵌） -->
   <section>
     <h2>清洗流程影片</h2>
-    <a href="https://youtu.be/ogInCGKJipM?feature=shared" target="_blank">
+    <a href="https://youtu.be/ogInCGKJipM?feature=shared" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/ogInCGKJipM/0.jpg" alt="清洗流程影片" width="100%">
     </a>
   </section>
 
+  <!-- 服務項目與價格 -->
   <section>
     <h2>服務項目與價格</h2>
+
     <h3>🔆 冷氣室內機專業保養清洗</h3>
     <p><strong>✳️ 環保藥洗：</strong><br>
-    分離式冷氣：每台 💲1800 元，滿三台優惠 💲1500 元</p>
+      分離式冷氣：每台 💲1800 元，滿三台優惠 💲1500 元
+    </p>
 
     <p><strong>【特殊機型加收】</strong></p>
     <ul>
@@ -219,6 +216,7 @@
       <li>富士通 一體式水盤 機型：加收 💲500 元／台</li>
       <li>富士通 Z 系列：暫無提供清洗服務</li>
     </ul>
+
     <p>🟢 吊隱式冷氣：每台 💲2800 元</p>
 
     <p><strong>✳️ 選配項目：</strong></p>
@@ -242,24 +240,79 @@
     <p><strong>✳️ 家用水塔（兩頓內）清洗</strong>：每顆 💲1000<br>同時清洗自來水管再優惠 💲200</p>
   </section>
 
-<section class="highlight-section">
-  <!-- 上方提示 Banner -->
-  <p class="highlight-banner">👉 請選擇您的清洗需求，系統將引導您進入專屬預約流程</p>
+  <!-- 首頁導流／分流入口 -->
+  <section class="highlight-section">
+    <p class="highlight-banner">👉 請選擇您的清洗需求，系統將引導您進入專屬預約流程</p>
 
-  <h2>🛠️ 服務項目選擇</h2>
-  <div class="service-links">
-    <a href="ac-booking.html">❄️ 冷氣清洗<br><small>（可加購 洗衣機 / 水塔）</small></a>
-    <a href="other-service.html">🧺 其他保養清洗<br><small>（自來水管、洗衣機、水塔）</small></a>
-    <a href="group-booking.html">👨‍👩‍👧‍👦 團購預約清洗<br><small>（鄰居、大樓同棟住戶）</small></a>
-    <a href="bulk-booking.html">🏢 大量清洗需求<br><small>（整棟大樓、民宿、10台以上）</small></a>
-  </div>
-</section>
+    <h2>🛠️ 服務項目選擇</h2>
+    <div class="service-links">
+      <a href="ac-booking.html">❄️ 冷氣清洗<br><small>（可加購 洗衣機 / 水塔）</small></a>
+      <a href="other-service.html">🧺 其他保養清洗<br><small>（自來水管、洗衣機、水塔）</small></a>
+      <a href="group-booking.html">👨‍👩‍👧‍👦 團購預約清洗<br><small>（鄰居、大樓同棟住戶）</small></a>
+      <a href="bulk-booking.html">🏢 大量清洗需求<br><small>（整棟大樓、民宿、10台以上）</small></a>
+    </div>
+  </section>
 
+  <!-- 頁腳 -->
   <footer>
-    <p>聯絡我們｜<a href="https://lin.ee/uWxrnKM" target="_blank">LINE 官方帳號</a> ｜ <a href="https://www.facebook.com/NaturalUncleTW" target="_blank">Facebook 粉絲專頁</a></p>
+    <p>
+      聯絡我們｜
+      <a href="https://lin.ee/uWxrnKM" target="_blank" rel="noopener">LINE 官方帳號</a> ｜ 
+      <a href="https://www.facebook.com/NaturalUncleTW" target="_blank" rel="noopener">Facebook 粉絲專頁</a>
+    </p>
   </footer>
 
-  <!-- ✅ 改用獨立 JS -->
-  <script src="theme.js"></script>
+  <!-- ========== 浮動深淺色切換按鈕（全站唯一） ========== -->
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換 深色／淺色" title="切換 深色／淺色">🌗 深淺色</button>
+
+  <!-- ========== 主題切換初始化腳本（可單獨運作；與 theme.js 共存） ========== -->
+  <script>
+    (function () {
+      // 1) 初次載入：套用使用者前次選擇；若無則依系統偏好
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (saved === 'light') {
+        document.body.classList.remove('dark-mode');
+      } else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) document.body.classList.add('dark-mode');
+      }
+
+      // 2) 若外部未提供 toggleTheme，這裡補上（讓 onclick 或其他元件也可共用）
+      if (typeof window.toggleTheme !== 'function') {
+        window.toggleTheme = function () {
+          document.body.classList.toggle('dark-mode');
+          localStorage.setItem('theme',
+            document.body.classList.contains('dark-mode') ? 'dark' : 'light'
+          );
+        };
+      }
+
+      // 3) 綁定浮動按鈕事件
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.addEventListener('click', window.toggleTheme);
+
+        // 捲動互動（選配）：快速上下捲動時稍微淡出，停止時恢復
+        let scrollTimer;
+        let lastY = window.scrollY;
+        window.addEventListener('scroll', () => {
+          const currY = window.scrollY;
+          const speed = Math.abs(currY - lastY);
+          lastY = currY;
+
+          if (speed > 12) btn.style.opacity = 0.75; // 快速捲動時較不干擾視線
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(() => {
+            btn.style.opacity = 0.95; // 停止捲動後回復
+          }, 120);
+        }, { passive: true });
+      }
+    })();
+  </script>
+
+  <!-- 若你仍有 theme.js，也可以保留；兩者可共存 -->
+  <!-- <script src="theme.js"></script> -->
 </body>
 </html>
